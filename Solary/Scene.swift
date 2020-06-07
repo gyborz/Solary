@@ -11,11 +11,13 @@ import UIKit
 struct Scene {
     
     var sceneType: SceneType
+    var fileName: String
     var name: String
     var rotation: CGFloat?
     
-    init(sceneType: SceneType, name: String, rotation: CGFloat?) {
+    init(sceneType: SceneType, fileName: String, name: String, rotation: CGFloat?) {
         self.sceneType = sceneType
+        self.fileName = fileName
         self.name = name
         self.rotation = rotation
     }
