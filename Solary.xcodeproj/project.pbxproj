@@ -13,6 +13,7 @@
 		E7233368248D1C09006963D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7233366248D1C09006963D2 /* Main.storyboard */; };
 		E723336A248D1C11006963D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7233369248D1C11006963D2 /* Assets.xcassets */; };
 		E723336D248D1C11006963D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E723336B248D1C11006963D2 /* LaunchScreen.storyboard */; };
+		E7EE49A9248D21B400AD2A7F /* SceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EE49A8248D21B400AD2A7F /* SceneViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		E7233369248D1C11006963D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E723336C248D1C11006963D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E723336E248D1C11006963D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E7EE49A8248D21B400AD2A7F /* SceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				E7233360248D1C09006963D2 /* AppDelegate.swift */,
 				E7233362248D1C09006963D2 /* art.scnassets */,
 				E7233364248D1C09006963D2 /* ARViewController.swift */,
+				E7EE49A8248D21B400AD2A7F /* SceneViewController.swift */,
 				E7233366248D1C09006963D2 /* Main.storyboard */,
 				E7233369248D1C11006963D2 /* Assets.xcassets */,
 				E723336B248D1C11006963D2 /* LaunchScreen.storyboard */,
@@ -139,6 +142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7EE49A9248D21B400AD2A7F /* SceneViewController.swift in Sources */,
 				E7233365248D1C09006963D2 /* ARViewController.swift in Sources */,
 				E7233361248D1C09006963D2 /* AppDelegate.swift in Sources */,
 			);
