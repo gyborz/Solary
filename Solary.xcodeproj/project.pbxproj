@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		E7233361248D1C09006963D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7233360248D1C09006963D2 /* AppDelegate.swift */; };
 		E7233363248D1C09006963D2 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = E7233362248D1C09006963D2 /* art.scnassets */; };
-		E7233365248D1C09006963D2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7233364248D1C09006963D2 /* ViewController.swift */; };
+		E7233365248D1C09006963D2 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7233364248D1C09006963D2 /* ARViewController.swift */; };
 		E7233368248D1C09006963D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7233366248D1C09006963D2 /* Main.storyboard */; };
 		E723336A248D1C11006963D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7233369248D1C11006963D2 /* Assets.xcassets */; };
 		E723336D248D1C11006963D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E723336B248D1C11006963D2 /* LaunchScreen.storyboard */; };
@@ -19,7 +19,7 @@
 		E723335D248D1C09006963D2 /* Solary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Solary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7233360248D1C09006963D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E7233362248D1C09006963D2 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
-		E7233364248D1C09006963D2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E7233364248D1C09006963D2 /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
 		E7233367248D1C09006963D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E7233369248D1C11006963D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E723336C248D1C11006963D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -58,7 +58,7 @@
 			children = (
 				E7233360248D1C09006963D2 /* AppDelegate.swift */,
 				E7233362248D1C09006963D2 /* art.scnassets */,
-				E7233364248D1C09006963D2 /* ViewController.swift */,
+				E7233364248D1C09006963D2 /* ARViewController.swift */,
 				E7233366248D1C09006963D2 /* Main.storyboard */,
 				E7233369248D1C11006963D2 /* Assets.xcassets */,
 				E723336B248D1C11006963D2 /* LaunchScreen.storyboard */,
@@ -139,7 +139,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7233365248D1C09006963D2 /* ViewController.swift in Sources */,
+				E7233365248D1C09006963D2 /* ARViewController.swift in Sources */,
 				E7233361248D1C09006963D2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -287,6 +287,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 62RRN86UA9;
 				INFOPLIST_FILE = Solary/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -294,7 +295,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.gyorgyborz.Solary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -305,6 +306,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 62RRN86UA9;
 				INFOPLIST_FILE = Solary/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -312,7 +314,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.gyorgyborz.Solary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

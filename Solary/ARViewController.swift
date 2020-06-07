@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ARViewController.swift
 //  Solary
 //
 //  Created by Gyorgy Borz on 2020. 06. 07..
