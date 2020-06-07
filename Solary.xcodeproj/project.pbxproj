@@ -16,6 +16,8 @@
 		E7EE49A9248D21B400AD2A7F /* SceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EE49A8248D21B400AD2A7F /* SceneViewController.swift */; };
 		E7EE49AB248D29B800AD2A7F /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EE49AA248D29B800AD2A7F /* Scene.swift */; };
 		E7EE49AD248D2A9F00AD2A7F /* SceneType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EE49AC248D2A9F00AD2A7F /* SceneType.swift */; };
+		E7EE49B0248D2DD600AD2A7F /* SceneTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EE49AE248D2DD600AD2A7F /* SceneTableViewCell.swift */; };
+		E7EE49B1248D2DD600AD2A7F /* SceneTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7EE49AF248D2DD600AD2A7F /* SceneTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		E7EE49A8248D21B400AD2A7F /* SceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneViewController.swift; sourceTree = "<group>"; };
 		E7EE49AA248D29B800AD2A7F /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		E7EE49AC248D2A9F00AD2A7F /* SceneType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneType.swift; sourceTree = "<group>"; };
+		E7EE49AE248D2DD600AD2A7F /* SceneTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTableViewCell.swift; sourceTree = "<group>"; };
+		E7EE49AF248D2DD600AD2A7F /* SceneTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SceneTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,8 +76,18 @@
 				E723336E248D1C11006963D2 /* Info.plist */,
 				E7EE49AA248D29B800AD2A7F /* Scene.swift */,
 				E7EE49AC248D2A9F00AD2A7F /* SceneType.swift */,
+				E7EE49B2248D2DF400AD2A7F /* Cells */,
 			);
 			path = Solary;
+			sourceTree = "<group>";
+		};
+		E7EE49B2248D2DF400AD2A7F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E7EE49AE248D2DD600AD2A7F /* SceneTableViewCell.swift */,
+				E7EE49AF248D2DD600AD2A7F /* SceneTableViewCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,6 +150,7 @@
 			files = (
 				E7233363248D1C09006963D2 /* art.scnassets in Resources */,
 				E723336D248D1C11006963D2 /* LaunchScreen.storyboard in Resources */,
+				E7EE49B1248D2DD600AD2A7F /* SceneTableViewCell.xib in Resources */,
 				E723336A248D1C11006963D2 /* Assets.xcassets in Resources */,
 				E7233368248D1C09006963D2 /* Main.storyboard in Resources */,
 			);
@@ -148,6 +163,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7EE49B0248D2DD600AD2A7F /* SceneTableViewCell.swift in Sources */,
 				E7EE49AB248D29B800AD2A7F /* Scene.swift in Sources */,
 				E7EE49A9248D21B400AD2A7F /* SceneViewController.swift in Sources */,
 				E7233365248D1C09006963D2 /* ARViewController.swift in Sources */,
