@@ -19,7 +19,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     }
 
     @IBOutlet var sceneView: ARSCNView!
-    @IBOutlet weak var blurView: UIView!
+    @IBOutlet var blurViews: [UIView]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,14 +41,20 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     }
     
     private func setupUI() {
-        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.systemUltraThinMaterialDark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = blurView.bounds
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        blurView.addSubview(blurEffectView)
-        blurView.sendSubviewToBack(blurEffectView)
-        blurView.layer.masksToBounds = true
-        blurView.layer.cornerRadius = blurView.frame.height / 2
+        for blurView in blurViews {
+            let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.systemUltraThinMaterialDark)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            blurEffectView.frame = blurView.bounds
+            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            blurView.addSubview(blurEffectView)
+            blurView.sendSubviewToBack(blurEffectView)
+            blurView.layer.masksToBounds = true
+            if blurView.tag == 1 {
+                blurView.layer.cornerRadius = blurView.frame.height / 2
+            } else {
+                blurView.layer.cornerRadius = 10
+            }
+        }
     }
 
     // MARK: - ARSCNViewDelegate
