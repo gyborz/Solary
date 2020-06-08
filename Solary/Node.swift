@@ -1,5 +1,5 @@
 //
-//  Scene.swift
+//  Node.swift
 //  Solary
 //
 //  Created by Gyorgy Borz on 2020. 06. 07..
@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct Scene {
+struct Node {
     
     var sceneType: SceneType
     var fileName: String

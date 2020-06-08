@@ -1,5 +1,5 @@
 //
-//  SceneTableViewCell.swift
+//  NodeTableViewCell.swift
 //  Solary
 //
 //  Created by Gyorgy Borz on 2020. 06. 07..
@@ -8,11 +8,11 @@
 
 import UIKit
 
-class SceneTableViewCell: UITableViewCell {
+class NodeTableViewCell: UITableViewCell {
     
     @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var sceneLabel: UILabel!
-    @IBOutlet weak var sceneImageView: UIImageView!
+    @IBOutlet weak var nodeLabel: UILabel!
+    @IBOutlet weak var nodeImageView: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
