@@ -63,4 +63,12 @@ extension NodeViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let chosenNode = data[indexPath.row]
+        let destVC = self.storyboard?.instantiateViewController(withIdentifier: "ARViewController") as! ARViewController
+        destVC.node = chosenNode
+        destVC.modalPresentationStyle = .fullScreen
+        present(destVC, animated: true)
+    }
+    
 }
