@@ -12,7 +12,7 @@ import ARKit
 
 class ARViewController: UIViewController, ARSCNViewDelegate {
     
-    var node: Node!
+    var nodeData: Node!
     private var center: CGPoint!
     private var positions = [SCNVector3]()
     private let pointer = SCNScene(named: "art.scnassets/pointer.scn")!.rootNode
@@ -157,6 +157,28 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
             if currentSceneState == .pointer {
                 rootNode.addChildNode(pointer)
             }
+        }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if currentSceneState == .pointer {
+            guard let angle = sceneView.session.currentFrame?.camera.eulerAngles else { return }
+            let node = getNode(from: nodeData)
+            node.position = pointer.position
+            node.eulerAngles.y = angle.y
+            currentSceneState = .planet
+            rootNode.addChildNode(node)
+            pointer.removeFromParentNode()
+        }
+    }
+    
+    private func getNode(from nodeData: Node) -> SCNNode {
+        switch nodeData.sceneType {
+        case .planet:
+            let node = SCNScene(named: "art.scnassets/planet.scn")!.rootNode.childNodes[0]
+            return node
+        case .solarSystem:
+            return SCNNode()
         }
     }
     
