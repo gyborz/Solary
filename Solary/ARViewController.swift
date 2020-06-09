@@ -20,6 +20,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet var blurViews: [UIView]!
+    private let coachingOverlay = ARCoachingOverlayView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,8 +32,8 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let configuration = ARWorldTrackingConfiguration()
-        sceneView.session.run(configuration)
+        setupARSession()
+        setOverlay(automatically: true, forDetectionType: .tracking)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -56,6 +57,30 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
             }
         }
     }
+    
+    private func setupARSession() {
+        let configuration = ARWorldTrackingConfiguration()
+        sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
+    }
+    
+    private func setOverlay(automatically: Bool, forDetectionType goal: ARCoachingOverlayView.Goal) {
+        coachingOverlay.session = self.sceneView.session
+        coachingOverlay.delegate = self
+        sceneView.addSubview(self.coachingOverlay)
+        
+        NSLayoutConstraint.activate([
+            NSLayoutConstraint(item:  coachingOverlay, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item:  coachingOverlay, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item:  coachingOverlay, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item:  coachingOverlay, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1, constant: 0)
+        ])
+        
+        coachingOverlay.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.coachingOverlay.activatesAutomatically = automatically
+        
+        self.coachingOverlay.goal = goal
+    }
 
     // MARK: - ARSCNViewDelegate
     
@@ -74,8 +99,28 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         
     }
     
+    func sessionShouldAttemptRelocalization(_ session: ARSession) -> Bool {
+        true
+    }
+    
     @IBAction func exitButtonTapped(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
+    }
+    
+}
+
+extension ARViewController: ARCoachingOverlayViewDelegate {
+    
+    func coachingOverlayViewWillActivate(_ coachingOverlayView: ARCoachingOverlayView) {
+        blurViews.forEach { $0.isHidden = $0.tag != 1 ? true : false }
+    }
+    
+    func coachingOverlayViewDidDeactivate(_ coachingOverlayView: ARCoachingOverlayView) {
+        blurViews.forEach { $0.isHidden = false }
+    }
+    
+    func coachingOverlayViewDidRequestSessionReset(_ coachingOverlayView: ARCoachingOverlayView) {
+        setupARSession()
     }
     
 }

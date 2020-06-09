@@ -81,28 +81,28 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NHj-H3-dQW">
                                                 <rect key="frame" x="58.5" y="0.0" width="90" height="50"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vtm-d2-7Z9">
+                                                        <rect key="frame" x="0.0" y="0.0" width="90" height="50"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <inset key="imageEdgeInsets" minX="25" minY="10" maxX="25" maxY="10"/>
+                                                        <state key="normal" image="galaxy"/>
+                                                    </button>
+                                                </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="CrF-gP-GJ0"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Vtm-d2-7Z9" secondAttribute="trailing" id="Kgd-On-hBP"/>
+                                                    <constraint firstItem="Vtm-d2-7Z9" firstAttribute="top" secondItem="NHj-H3-dQW" secondAttribute="top" id="Pqf-3O-8mL"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Vtm-d2-7Z9" secondAttribute="bottom" id="isV-uO-KTe"/>
+                                                    <constraint firstItem="Vtm-d2-7Z9" firstAttribute="leading" secondItem="NHj-H3-dQW" secondAttribute="leading" id="olO-fZ-ujf"/>
                                                     <constraint firstAttribute="width" constant="90" id="p6L-p2-t4c"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vtm-d2-7Z9">
-                                                <rect key="frame" x="58.5" y="0.0" width="90" height="50"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="hHR-vk-nz2"/>
-                                                    <constraint firstAttribute="width" constant="90" id="mvK-5r-4sI"/>
-                                                </constraints>
-                                                <inset key="imageEdgeInsets" minX="25" minY="10" maxX="25" maxY="10"/>
-                                                <state key="normal" image="galaxy"/>
-                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="Vtm-d2-7Z9" firstAttribute="centerX" secondItem="STz-GK-luB" secondAttribute="centerX" id="65V-7Q-44Q"/>
                                             <constraint firstItem="NHj-H3-dQW" firstAttribute="centerY" secondItem="STz-GK-luB" secondAttribute="centerY" id="vyX-Ti-dUd"/>
-                                            <constraint firstItem="Vtm-d2-7Z9" firstAttribute="centerY" secondItem="STz-GK-luB" secondAttribute="centerY" id="yJc-yr-v9e"/>
                                             <constraint firstItem="NHj-H3-dQW" firstAttribute="centerX" secondItem="STz-GK-luB" secondAttribute="centerX" id="zbW-MW-dJ0"/>
                                         </constraints>
                                     </view>
@@ -111,28 +111,28 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5pO-ps-A1R">
                                                 <rect key="frame" x="58.5" y="0.0" width="90" height="50"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pLU-uu-0BW">
+                                                        <rect key="frame" x="0.0" y="0.0" width="90" height="50"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" image="play" catalog="system"/>
+                                                    </button>
+                                                </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
+                                                    <constraint firstItem="pLU-uu-0BW" firstAttribute="top" secondItem="5pO-ps-A1R" secondAttribute="top" id="Ftj-b1-tIG"/>
+                                                    <constraint firstItem="pLU-uu-0BW" firstAttribute="leading" secondItem="5pO-ps-A1R" secondAttribute="leading" id="ftY-Aq-4RZ"/>
                                                     <constraint firstAttribute="width" constant="90" id="nFT-8b-CQl"/>
+                                                    <constraint firstAttribute="trailing" secondItem="pLU-uu-0BW" secondAttribute="trailing" id="otO-hy-GPX"/>
                                                     <constraint firstAttribute="height" constant="50" id="uiN-kl-zjP"/>
+                                                    <constraint firstAttribute="bottom" secondItem="pLU-uu-0BW" secondAttribute="bottom" id="unc-2C-hhZ"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pLU-uu-0BW">
-                                                <rect key="frame" x="58.5" y="0.0" width="90" height="50"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="fKv-Jx-xjp"/>
-                                                    <constraint firstAttribute="width" constant="90" id="g9O-Tq-Uze"/>
-                                                </constraints>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" image="play" catalog="system"/>
-                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="pLU-uu-0BW" firstAttribute="centerX" secondItem="7vu-M3-YNT" secondAttribute="centerX" id="08d-aY-mzo"/>
                                             <constraint firstItem="5pO-ps-A1R" firstAttribute="centerY" secondItem="7vu-M3-YNT" secondAttribute="centerY" id="HyV-Dy-r5E"/>
-                                            <constraint firstItem="pLU-uu-0BW" firstAttribute="centerY" secondItem="7vu-M3-YNT" secondAttribute="centerY" id="Nkg-K9-PzP"/>
                                             <constraint firstItem="5pO-ps-A1R" firstAttribute="centerX" secondItem="7vu-M3-YNT" secondAttribute="centerX" id="W2Z-Sn-n6l"/>
                                         </constraints>
                                     </view>
