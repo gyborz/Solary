@@ -162,10 +162,11 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if currentSceneState == .pointer {
-            guard let angle = sceneView.session.currentFrame?.camera.eulerAngles else { return }
+            guard let camera = sceneView.session.currentFrame?.camera else { return }
             let node = getNode(from: nodeData)
             node.position = pointer.position
-            node.eulerAngles.y = angle.y
+            node.position.y = camera.transform.columns.3.y
+            node.eulerAngles.y = camera.eulerAngles.y
             currentSceneState = .planet
             rootNode.addChildNode(node)
             pointer.removeFromParentNode()
@@ -175,7 +176,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     private func getNode(from nodeData: Node) -> SCNNode {
         switch nodeData.sceneType {
         case .planet:
-            let node = SCNScene(named: "art.scnassets/planet.scn")!.rootNode.childNodes[0]
+            guard let node = SCNScene(named: "art.scnassets/planet.scn")!.rootNode.childNode(withName: "\(nodeData.fileName)", recursively: true) else { fatalError("Missing node") }
             return node
         case .solarSystem:
             return SCNNode()
