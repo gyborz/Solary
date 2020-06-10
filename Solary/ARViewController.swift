@@ -15,7 +15,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     var nodeData: Node!
     private var center: CGPoint!
     private var positions = [SCNVector3]()
-    private let pointer = SCNScene(named: "art.scnassets/pointer.scn")!.rootNode
+    private var pointer: SCNNode!
     private var rootNode: SCNNode {
         return sceneView.scene.rootNode
     }
@@ -72,7 +72,9 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     private func setupARSession() {
         let configuration = ARWorldTrackingConfiguration()
         sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
+        pointer = SCNScene(named: "art.scnassets/pointer.scn")!.rootNode.childNode(withName: "pointer", recursively: true)
         rootNode.addChildNode(pointer)
+        currentSceneState = .pointer
     }
     
     private func setOverlay(automatically: Bool, forDetectionType goal: ARCoachingOverlayView.Goal) {
@@ -133,14 +135,16 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-        let hitTest = sceneView.hitTest(center, types: .featurePoint)
-        let result = hitTest.last
-        guard let transform = result?.worldTransform else { return }
-        let thirdColumn = transform.columns.3
-        let position = SCNVector3Make(thirdColumn.x, thirdColumn.y, thirdColumn.z)
-        positions.append(position)
-        let lastTenPositions = positions.suffix(10)
-        pointer.position = getAveragePosition(from: lastTenPositions)
+        if currentSceneState == .pointer {
+            let hitTest = sceneView.hitTest(center, types: .featurePoint)
+            let result = hitTest.last
+            guard let transform = result?.worldTransform else { return }
+            let thirdColumn = transform.columns.3
+            let position = SCNVector3Make(thirdColumn.x, thirdColumn.y, thirdColumn.z)
+            positions.append(position)
+            let lastTenPositions = positions.suffix(10)
+            pointer.position = getAveragePosition(from: lastTenPositions)
+        }
     }
     
     func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
@@ -148,15 +152,11 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         case .notAvailable, .limited:
             // MARK: - TODO
             print("not normal")
-            if currentSceneState == .pointer {
-                pointer.removeFromParentNode()
-            }
+            rootNode.childNodes.forEach { $0.isHidden = true }
         case .normal:
             // MARK: - TODO
             print("normal")
-            if currentSceneState == .pointer {
-                rootNode.addChildNode(pointer)
-            }
+            rootNode.childNodes.forEach { $0.isHidden = false }
         }
     }
     
@@ -200,6 +200,11 @@ extension ARViewController: ARCoachingOverlayViewDelegate {
     }
     
     func coachingOverlayViewDidRequestSessionReset(_ coachingOverlayView: ARCoachingOverlayView) {
+        rootNode.childNodes.forEach {
+            if $0.name == nodeData.fileName {
+                $0.removeFromParentNode()
+            }
+        }
         setupARSession()
     }
     
