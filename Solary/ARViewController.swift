@@ -128,7 +128,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     
     func sessionWasInterrupted(_ session: ARSession) {
         // Inform the user that the session has been interrupted, for example, by presenting an overlay
-        
+        hideControls(true)
     }
     
     func sessionInterruptionEnded(_ session: ARSession) {
@@ -191,12 +191,29 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
                     actionsForThisNode[$0] = nodeMember.action(forKey: $0)
                 }
                 actions[nodeName] = actionsForThisNode
-                print(nodeName, actionsForThisNode.count)
                 nodeMember.removeAllActions()
             }
             return node
         case .solarSystem:
             return SCNNode()
+        }
+    }
+    
+    private func hideControls(_ hide: Bool) {
+        if hide {
+            for blurView in blurViews {
+                if blurView.tag != 1 {
+                    UIView.animate(withDuration: 0.3) {
+                        blurView.alpha = 0
+                    }
+                }
+            }
+        } else {
+            for blurView in blurViews {
+                UIView.animate(withDuration: 0.3) {
+                    blurView.alpha = 1.0
+                }
+            }
         }
     }
     
@@ -238,11 +255,11 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
 extension ARViewController: ARCoachingOverlayViewDelegate {
     
     func coachingOverlayViewWillActivate(_ coachingOverlayView: ARCoachingOverlayView) {
-        blurViews.forEach { $0.isHidden = $0.tag != 1 ? true : false }
+        hideControls(true)
     }
     
     func coachingOverlayViewDidDeactivate(_ coachingOverlayView: ARCoachingOverlayView) {
-        blurViews.forEach { $0.isHidden = false }
+        hideControls(false)
     }
     
     func coachingOverlayViewDidRequestSessionReset(_ coachingOverlayView: ARCoachingOverlayView) {
