@@ -16,6 +16,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     private var center: CGPoint!
     private var positions = [SCNVector3]()
     private var pointer: SCNNode!
+    private var galaxy: SCNNode!
     private var rootNode: SCNNode {
         return sceneView.scene.rootNode
     }
@@ -32,6 +33,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet var blurViews: [UIView]!
+    @IBOutlet weak var galaxyButton: UIButton!
     private let coachingOverlay = ARCoachingOverlayView()
     
     override func viewDidLoad() {
@@ -73,6 +75,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         let configuration = ARWorldTrackingConfiguration()
         sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
         pointer = SCNScene(named: "art.scnassets/pointer.scn")!.rootNode.childNode(withName: "pointer", recursively: true)
+        galaxy = SCNScene(named: "art.scnassets/galaxy.scn")!.rootNode.childNode(withName: "galaxy", recursively: true)
         rootNode.addChildNode(pointer)
         currentSceneState = .pointer
     }
@@ -163,7 +166,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if currentSceneState == .pointer {
             guard let camera = sceneView.session.currentFrame?.camera else { return }
-            let node = getNode(from: nodeData)
+            let node = getNode(with: nodeData)
             node.position = pointer.position
             node.position.y = camera.transform.columns.3.y
             node.eulerAngles.y = camera.eulerAngles.y
@@ -173,13 +176,23 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         }
     }
     
-    private func getNode(from nodeData: Node) -> SCNNode {
+    private func getNode(with nodeData: Node) -> SCNNode {
         switch nodeData.sceneType {
         case .planet:
             guard let node = SCNScene(named: "art.scnassets/planet.scn")!.rootNode.childNode(withName: "\(nodeData.fileName)", recursively: true) else { fatalError("Missing node") }
             return node
         case .solarSystem:
             return SCNNode()
+        }
+    }
+    
+    @IBAction func galaxyButtonTapped(_ sender: UIButton) {
+        if rootNode.childNodes.contains(galaxy) {
+            galaxy.removeFromParentNode()
+            galaxyButton.setImage(UIImage(named: "galaxy"), for: .normal)
+        } else {
+            rootNode.addChildNode(galaxy)
+            galaxyButton.setImage(UIImage(named: "galaxy.fill"), for: .normal)
         }
     }
     
@@ -201,10 +214,11 @@ extension ARViewController: ARCoachingOverlayViewDelegate {
     
     func coachingOverlayViewDidRequestSessionReset(_ coachingOverlayView: ARCoachingOverlayView) {
         rootNode.childNodes.forEach {
-            if $0.name == nodeData.fileName {
+            if $0.name == nodeData.fileName || $0.name == galaxy.name || $0.name == pointer.name {
                 $0.removeFromParentNode()
             }
         }
+        galaxyButton.setImage(UIImage(named: "galaxy"), for: .normal)
         setupARSession()
     }
     
