@@ -17,6 +17,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     private var positions = [SCNVector3]()
     private var pointer: SCNNode!
     private var galaxy: SCNNode!
+    private var actions = [String:[String:SCNAction]]()
     private var rootNode: SCNNode {
         return sceneView.scene.rootNode
     }
@@ -34,6 +35,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet var blurViews: [UIView]!
     @IBOutlet weak var galaxyButton: UIButton!
+    @IBOutlet weak var actionButton: UIButton!
     private let coachingOverlay = ARCoachingOverlayView()
     
     override func viewDidLoad() {
@@ -76,6 +78,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
         pointer = SCNScene(named: "art.scnassets/pointer.scn")!.rootNode.childNode(withName: "pointer", recursively: true)
         galaxy = SCNScene(named: "art.scnassets/galaxy.scn")!.rootNode.childNode(withName: "galaxy", recursively: true)
+        actions = [String:[String:SCNAction]]()
         rootNode.addChildNode(pointer)
         currentSceneState = .pointer
     }
@@ -179,7 +182,18 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     private func getNode(with nodeData: Node) -> SCNNode {
         switch nodeData.sceneType {
         case .planet:
-            guard let node = SCNScene(named: "art.scnassets/planet.scn")!.rootNode.childNode(withName: "\(nodeData.fileName)", recursively: true) else { fatalError("Missing node") }
+            // MARK: - TODO proper error handling
+            guard let node = SCNScene(named: "art.scnassets/planet.scn")!.rootNode.childNode(withName: nodeData.fileName, recursively: true) else { fatalError("Missing node") }
+            node.enumerateHierarchy { (nodeMember, _) in
+                guard let nodeName = nodeMember.name else { return }
+                var actionsForThisNode = [String:SCNAction]()
+                nodeMember.actionKeys.forEach {
+                    actionsForThisNode[$0] = nodeMember.action(forKey: $0)
+                }
+                actions[nodeName] = actionsForThisNode
+                print(nodeName, actionsForThisNode.count)
+                nodeMember.removeAllActions()
+            }
             return node
         case .solarSystem:
             return SCNNode()
@@ -193,6 +207,25 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         } else {
             rootNode.addChildNode(galaxy)
             galaxyButton.setImage(UIImage(named: "galaxy.fill"), for: .normal)
+        }
+    }
+    
+    @IBAction func actionButtonTapped(_ sender: UIButton) {
+        if let currentNode = rootNode.childNode(withName: nodeData.fileName, recursively: true), currentNode.actionKeys.isEmpty {
+            currentNode.enumerateHierarchy { (nodeMember, _) in
+                guard let nodeName = nodeMember.name else { return }
+                if let actionsForThisNode = actions[nodeName] {
+                    for (key, action) in actionsForThisNode {
+                        nodeMember.runAction(action, forKey: key)
+                    }
+                }
+            }
+            actionButton.setImage(UIImage(systemName: "pause"), for: .normal)
+        } else if let currentNode = rootNode.childNode(withName: nodeData.fileName, recursively: true), !currentNode.actionKeys.isEmpty {
+            currentNode.enumerateHierarchy { (nodeMember, _) in
+                nodeMember.removeAllActions()
+            }
+            actionButton.setImage(UIImage(systemName: "play"), for: .normal)
         }
     }
     
@@ -219,6 +252,7 @@ extension ARViewController: ARCoachingOverlayViewDelegate {
             }
         }
         galaxyButton.setImage(UIImage(named: "galaxy"), for: .normal)
+        actionButton.setImage(UIImage(systemName: "play"), for: .normal)
         setupARSession()
     }
     

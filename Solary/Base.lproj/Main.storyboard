@@ -120,6 +120,9 @@
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" image="play" catalog="system"/>
+                                                        <connections>
+                                                            <action selector="actionButtonTapped:" destination="BV1-FR-VrT" eventType="touchUpInside" id="eJe-RN-Kdf"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -160,6 +163,7 @@
                         <viewLayoutGuide key="safeArea" id="fQZ-KI-GVf"/>
                     </view>
                     <connections>
+                        <outlet property="actionButton" destination="pLU-uu-0BW" id="4iP-7r-PJv"/>
                         <outlet property="galaxyButton" destination="Vtm-d2-7Z9" id="ekj-Ev-5tb"/>
                         <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
                         <outletCollection property="blurViews" destination="5pO-ps-A1R" collectionClass="NSMutableArray" id="TWh-FS-ARC"/>
