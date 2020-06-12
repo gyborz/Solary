@@ -185,16 +185,29 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
             guard let node = SCNScene(named: "art.scnassets/planet.scn")!.rootNode.childNode(withName: nodeData.fileName, recursively: true) else { fatalError("Missing node") }
             node.enumerateHierarchy { (nodeMember, _) in
                 guard let nodeName = nodeMember.name else { return }
-                var actionsForThisNode = [String:SCNAction]()
-                nodeMember.actionKeys.forEach {
-                    actionsForThisNode[$0] = nodeMember.action(forKey: $0)
+                if !nodeMember.actionKeys.isEmpty {
+                    var actionsForThisNode = [String:SCNAction]()
+                    nodeMember.actionKeys.forEach {
+                        actionsForThisNode[$0] = nodeMember.action(forKey: $0)
+                    }
+                    actions[nodeName] = actionsForThisNode
+                    nodeMember.removeAllActions()
                 }
-                actions[nodeName] = actionsForThisNode
-                nodeMember.removeAllActions()
             }
             return node
         case .solarSystem:
             guard let node = SCNScene(named: "art.scnassets/solarSystem.scn")!.rootNode.childNode(withName: nodeData.fileName, recursively: true) else { fatalError("Missing node") }
+            node.enumerateHierarchy { (nodeMember, _) in
+                guard let nodeName = nodeMember.name else { return }
+                if !nodeMember.actionKeys.isEmpty {
+                    var actionsForThisNode = [String:SCNAction]()
+                    nodeMember.actionKeys.forEach {
+                        actionsForThisNode[$0] = nodeMember.action(forKey: $0)
+                    }
+                    actions[nodeName] = actionsForThisNode
+                    nodeMember.removeAllActions()
+                }
+            }
             return node
         }
     }
@@ -228,8 +241,31 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     }
     
     @IBAction func actionButtonTapped(_ sender: UIButton) {
-        if let currentNode = rootNode.childNode(withName: nodeData.fileName, recursively: true), currentNode.actionKeys.isEmpty {
-            currentNode.enumerateHierarchy { (nodeMember, _) in
+//        if let visibleNode = rootNode.childNode(withName: nodeData.fileName, recursively: true), visibleNode.actionKeys.isEmpty {
+//            visibleNode.enumerateHierarchy { (nodeMember, _) in
+//                guard let nodeName = nodeMember.name else { return }
+//                if let actionsForThisNode = actions[nodeName] {
+//                    for (key, action) in actionsForThisNode {
+//                        nodeMember.runAction(action, forKey: key)
+//                    }
+//                }
+//            }
+//            actionButton.setImage(UIImage(systemName: "pause"), for: .normal)
+//        } else if let visibleNode = rootNode.childNode(withName: nodeData.fileName, recursively: true), !visibleNode.actionKeys.isEmpty {
+//            visibleNode.enumerateHierarchy { (nodeMember, _) in
+//                nodeMember.removeAllActions()
+//            }
+//            actionButton.setImage(UIImage(systemName: "play"), for: .normal)
+//        }
+        guard let visibleNode = rootNode.childNode(withName: nodeData.fileName, recursively: true) else { return }
+        var anyNodeHasActions = false
+        visibleNode.enumerateHierarchy { (nodeMember, _) in
+            if !nodeMember.actionKeys.isEmpty {
+                anyNodeHasActions = true
+            }
+        }
+        if !anyNodeHasActions {
+            visibleNode.enumerateHierarchy { (nodeMember, _) in
                 guard let nodeName = nodeMember.name else { return }
                 if let actionsForThisNode = actions[nodeName] {
                     for (key, action) in actionsForThisNode {
@@ -238,8 +274,8 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
                 }
             }
             actionButton.setImage(UIImage(systemName: "pause"), for: .normal)
-        } else if let currentNode = rootNode.childNode(withName: nodeData.fileName, recursively: true), !currentNode.actionKeys.isEmpty {
-            currentNode.enumerateHierarchy { (nodeMember, _) in
+        } else {
+            visibleNode.enumerateHierarchy { (nodeMember, _) in
                 nodeMember.removeAllActions()
             }
             actionButton.setImage(UIImage(systemName: "play"), for: .normal)
