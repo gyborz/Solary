@@ -156,12 +156,8 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
         switch camera.trackingState {
         case .notAvailable, .limited:
-            // MARK: - TODO
-            print("not normal")
             rootNode.childNodes.forEach { $0.isHidden = true }
         case .normal:
-            // MARK: - TODO
-            print("normal")
             rootNode.childNodes.forEach { $0.isHidden = false }
         }
     }
@@ -241,22 +237,6 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     }
     
     @IBAction func actionButtonTapped(_ sender: UIButton) {
-//        if let visibleNode = rootNode.childNode(withName: nodeData.fileName, recursively: true), visibleNode.actionKeys.isEmpty {
-//            visibleNode.enumerateHierarchy { (nodeMember, _) in
-//                guard let nodeName = nodeMember.name else { return }
-//                if let actionsForThisNode = actions[nodeName] {
-//                    for (key, action) in actionsForThisNode {
-//                        nodeMember.runAction(action, forKey: key)
-//                    }
-//                }
-//            }
-//            actionButton.setImage(UIImage(systemName: "pause"), for: .normal)
-//        } else if let visibleNode = rootNode.childNode(withName: nodeData.fileName, recursively: true), !visibleNode.actionKeys.isEmpty {
-//            visibleNode.enumerateHierarchy { (nodeMember, _) in
-//                nodeMember.removeAllActions()
-//            }
-//            actionButton.setImage(UIImage(systemName: "play"), for: .normal)
-//        }
         guard let visibleNode = rootNode.childNode(withName: nodeData.fileName, recursively: true) else { return }
         var anyNodeHasActions = false
         visibleNode.enumerateHierarchy { (nodeMember, _) in
