@@ -172,7 +172,6 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
             let node = getNode(with: nodeData)
             node.position = pointer.position
             node.position.y = camera.transform.columns.3.y
-            node.eulerAngles.y = camera.eulerAngles.y
             currentSceneState = .planet
             rootNode.addChildNode(node)
             pointer.removeFromParentNode()
@@ -195,7 +194,8 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
             }
             return node
         case .solarSystem:
-            return SCNNode()
+            guard let node = SCNScene(named: "art.scnassets/solarSystem.scn")!.rootNode.childNode(withName: nodeData.fileName, recursively: true) else { fatalError("Missing node") }
+            return node
         }
     }
     
