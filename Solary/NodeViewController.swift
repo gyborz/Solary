@@ -13,19 +13,19 @@ class NodeViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    private let data: [Node] = [
-        Node(sceneType: .solarSystem, fileName: "solarSystem", name: "Solar system", rotation: nil),
-        Node(sceneType: .planet, fileName: "sun", name: "Sun", rotation: nil),
-        Node(sceneType: .planet, fileName: "mercury", name: "Mercury", rotation: nil),
-        Node(sceneType: .planet, fileName: "venus", name: "Venus", rotation: nil),
-        Node(sceneType: .planet, fileName: "earthDay", name: "Earth (day)", rotation: nil),
-        Node(sceneType: .planet, fileName: "earthNight", name: "Earth (night)", rotation: nil),
-        Node(sceneType: .planet, fileName: "moon", name: "Moon", rotation: nil),
-        Node(sceneType: .planet, fileName: "mars", name: "Mars", rotation: nil),
-        Node(sceneType: .planet, fileName: "jupiter", name: "Jupiter", rotation: nil),
-        Node(sceneType: .planet, fileName: "saturn", name: "Saturn", rotation: nil),
-        Node(sceneType: .planet, fileName: "uranus", name: "Uranus", rotation: nil),
-        Node(sceneType: .planet, fileName: "neptune", name: "Neptune", rotation: nil)
+    private let nodeData: [NodeData] = [
+        NodeData(sceneType: .solarSystem, fileName: "solarSystem", name: "Solar system"),
+        NodeData(sceneType: .planet, fileName: "sun", name: "Sun"),
+        NodeData(sceneType: .planet, fileName: "mercury", name: "Mercury"),
+        NodeData(sceneType: .planet, fileName: "venus", name: "Venus"),
+        NodeData(sceneType: .planet, fileName: "earthDay", name: "Earth (day)"),
+        NodeData(sceneType: .planet, fileName: "earthNight", name: "Earth (night)"),
+        NodeData(sceneType: .planet, fileName: "moon", name: "Moon"),
+        NodeData(sceneType: .planet, fileName: "mars", name: "Mars"),
+        NodeData(sceneType: .planet, fileName: "jupiter", name: "Jupiter"),
+        NodeData(sceneType: .planet, fileName: "saturn", name: "Saturn"),
+        NodeData(sceneType: .planet, fileName: "uranus", name: "Uranus"),
+        NodeData(sceneType: .planet, fileName: "neptune", name: "Neptune")
     ]
     
     @IBOutlet weak var sceneTableView: UITableView!
@@ -51,20 +51,20 @@ class NodeViewController: UIViewController {
 extension NodeViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        data.count
+        nodeData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = sceneTableView.dequeueReusableCell(withIdentifier: "NodeCell", for: indexPath) as! NodeTableViewCell
         
-        cell.nodeLabel.text = data[indexPath.row].name
-        cell.nodeImageView.image = UIImage(named: data[indexPath.row].fileName)
+        cell.nodeLabel.text = nodeData[indexPath.row].name
+        cell.nodeImageView.image = UIImage(named: nodeData[indexPath.row].fileName)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let chosenNode = data[indexPath.row]
+        let chosenNode = nodeData[indexPath.row]
         let destVC = self.storyboard?.instantiateViewController(withIdentifier: "ARViewController") as! ARViewController
         destVC.nodeData = chosenNode
         destVC.modalPresentationStyle = .fullScreen

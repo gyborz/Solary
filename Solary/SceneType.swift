@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum SceneType {
-    case solarSystem
-    case planet
+enum SceneType: String {
+    case solarSystem = "solarSystem"
+    case planet = "planet"
 }

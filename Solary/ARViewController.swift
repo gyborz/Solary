@@ -12,7 +12,7 @@ import ARKit
 
 class ARViewController: UIViewController, ARSCNViewDelegate {
     
-    var nodeData: Node!
+    var nodeData: NodeData!
     private var center: CGPoint!
     private var positions = [SCNVector3]()
     private var pointer: SCNNode!
@@ -197,38 +197,20 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         }
     }
     
-    private func getNode(with nodeData: Node) -> SCNNode {
-        switch nodeData.sceneType {
-        case .planet:
-            // MARK: - TODO proper error handling
-            guard let node = SCNScene(named: "art.scnassets/planet.scn")!.rootNode.childNode(withName: nodeData.fileName, recursively: true) else { fatalError("Missing node") }
-            node.enumerateHierarchy { (nodeMember, _) in
-                guard let nodeName = nodeMember.name else { return }
-                if !nodeMember.actionKeys.isEmpty {
-                    var actionsForThisNode = [String:SCNAction]()
-                    nodeMember.actionKeys.forEach {
-                        actionsForThisNode[$0] = nodeMember.action(forKey: $0)
-                    }
-                    actions[nodeName] = actionsForThisNode
-                    nodeMember.removeAllActions()
+    private func getNode(with nodeData: NodeData) -> SCNNode {
+        guard let node = SCNScene(named: "art.scnassets/\(nodeData.sceneType.rawValue).scn")!.rootNode.childNode(withName: nodeData.fileName, recursively: true) else { fatalError("Missing node") }
+        node.enumerateHierarchy { (nodeMember, _) in
+            guard let nodeName = nodeMember.name else { return }
+            if !nodeMember.actionKeys.isEmpty {
+                var actionsForThisNode = [String:SCNAction]()
+                nodeMember.actionKeys.forEach {
+                    actionsForThisNode[$0] = nodeMember.action(forKey: $0)
                 }
+                actions[nodeName] = actionsForThisNode
+                nodeMember.removeAllActions()
             }
-            return node
-        case .solarSystem:
-            guard let node = SCNScene(named: "art.scnassets/solarSystem.scn")!.rootNode.childNode(withName: nodeData.fileName, recursively: true) else { fatalError("Missing node") }
-            node.enumerateHierarchy { (nodeMember, _) in
-                guard let nodeName = nodeMember.name else { return }
-                if !nodeMember.actionKeys.isEmpty {
-                    var actionsForThisNode = [String:SCNAction]()
-                    nodeMember.actionKeys.forEach {
-                        actionsForThisNode[$0] = nodeMember.action(forKey: $0)
-                    }
-                    actions[nodeName] = actionsForThisNode
-                    nodeMember.removeAllActions()
-                }
-            }
-            return node
         }
+        return node
     }
     
     private func hideControls(_ hide: Bool) {
@@ -262,9 +244,10 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     @IBAction func actionButtonTapped(_ sender: UIButton) {
         guard let currentNode = rootNode.childNode(withName: nodeData.fileName, recursively: true) else { return }
         var anyNodeHasActions = false
-        currentNode.enumerateHierarchy { (nodeMember, _) in
+        currentNode.enumerateHierarchy { (nodeMember, stop) in
             if !nodeMember.actionKeys.isEmpty {
                 anyNodeHasActions = true
+                stop.initialize(to: true)
             }
         }
         if !anyNodeHasActions {

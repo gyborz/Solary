@@ -1,5 +1,5 @@
 //
-//  Node.swift
+//  NodeData.swift
 //  Solary
 //
 //  Created by Gyorgy Borz on 2020. 06. 07..
@@ -8,18 +8,16 @@
 
 import UIKit
 
-struct Node {
+struct NodeData {
     
     var sceneType: SceneType
     var fileName: String
     var name: String
-    var rotation: CGFloat?
     
-    init(sceneType: SceneType, fileName: String, name: String, rotation: CGFloat?) {
+    init(sceneType: SceneType, fileName: String, name: String) {
         self.sceneType = sceneType
         self.fileName = fileName
         self.name = name
-        self.rotation = rotation
     }
     
 }

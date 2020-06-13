@@ -15,7 +15,7 @@
 		E723336D248D1C11006963D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E723336B248D1C11006963D2 /* LaunchScreen.storyboard */; };
 		E7608ECE24950EC900196FF3 /* ARViewController+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7608ECD24950EC900196FF3 /* ARViewController+Gestures.swift */; };
 		E7EE49A9248D21B400AD2A7F /* NodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EE49A8248D21B400AD2A7F /* NodeViewController.swift */; };
-		E7EE49AB248D29B800AD2A7F /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EE49AA248D29B800AD2A7F /* Node.swift */; };
+		E7EE49AB248D29B800AD2A7F /* NodeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EE49AA248D29B800AD2A7F /* NodeData.swift */; };
 		E7EE49AD248D2A9F00AD2A7F /* SceneType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EE49AC248D2A9F00AD2A7F /* SceneType.swift */; };
 		E7EE49B0248D2DD600AD2A7F /* NodeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EE49AE248D2DD600AD2A7F /* NodeTableViewCell.swift */; };
 		E7EE49B1248D2DD600AD2A7F /* NodeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7EE49AF248D2DD600AD2A7F /* NodeTableViewCell.xib */; };
@@ -32,7 +32,7 @@
 		E723336E248D1C11006963D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7608ECD24950EC900196FF3 /* ARViewController+Gestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARViewController+Gestures.swift"; sourceTree = "<group>"; };
 		E7EE49A8248D21B400AD2A7F /* NodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeViewController.swift; sourceTree = "<group>"; };
-		E7EE49AA248D29B800AD2A7F /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
+		E7EE49AA248D29B800AD2A7F /* NodeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeData.swift; sourceTree = "<group>"; };
 		E7EE49AC248D2A9F00AD2A7F /* SceneType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneType.swift; sourceTree = "<group>"; };
 		E7EE49AE248D2DD600AD2A7F /* NodeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeTableViewCell.swift; sourceTree = "<group>"; };
 		E7EE49AF248D2DD600AD2A7F /* NodeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NodeTableViewCell.xib; sourceTree = "<group>"; };
@@ -77,7 +77,7 @@
 				E7233369248D1C11006963D2 /* Assets.xcassets */,
 				E723336B248D1C11006963D2 /* LaunchScreen.storyboard */,
 				E723336E248D1C11006963D2 /* Info.plist */,
-				E7EE49AA248D29B800AD2A7F /* Node.swift */,
+				E7EE49AA248D29B800AD2A7F /* NodeData.swift */,
 				E7EE49AC248D2A9F00AD2A7F /* SceneType.swift */,
 				E7EE49B2248D2DF400AD2A7F /* Cells */,
 			);
@@ -167,7 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7EE49B0248D2DD600AD2A7F /* NodeTableViewCell.swift in Sources */,
-				E7EE49AB248D29B800AD2A7F /* Node.swift in Sources */,
+				E7EE49AB248D29B800AD2A7F /* NodeData.swift in Sources */,
 				E7EE49A9248D21B400AD2A7F /* NodeViewController.swift in Sources */,
 				E7233365248D1C09006963D2 /* ARViewController.swift in Sources */,
 				E7608ECE24950EC900196FF3 /* ARViewController+Gestures.swift in Sources */,
