@@ -18,7 +18,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     private var pointer: SCNNode!
     private var galaxy: SCNNode!
     private var actions = [String:[String:SCNAction]]()
-    private var rootNode: SCNNode {
+    var rootNode: SCNNode {
         return sceneView.scene.rootNode
     }
     
@@ -43,6 +43,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         sceneView.delegate = self
         center = view.center
         setupUI()
+        createGestureRecognizers()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -117,6 +118,23 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         }
         let count = Float(positions.count)
         return SCNVector3Make(averageX / count, averageY / count, averageZ / count)
+    }
+    
+    private func createGestureRecognizers() {
+        /// rotation gesture
+        let rotationGesture = UIRotationGestureRecognizer(target: self, action: #selector(didRotate(_:)))
+        rotationGesture.delegate = self
+        sceneView.addGestureRecognizer(rotationGesture)
+        
+        /// pinch gesture
+        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(didPinch(_:)))
+        pinchGesture.delegate = self
+        sceneView.addGestureRecognizer(pinchGesture)
+        
+        /// pan gesture
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(didPan(_:)))
+        panGesture.delegate = self
+        sceneView.addGestureRecognizer(panGesture)
     }
 
     // MARK: - ARSCNViewDelegate
