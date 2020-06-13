@@ -55,6 +55,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         sceneView.session.pause()
+        UIApplication.shared.isIdleTimerDisabled = false
     }
     
     private func setupUI() {
@@ -75,6 +76,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     }
     
     private func setupARSession() {
+        UIApplication.shared.isIdleTimerDisabled = true
         let configuration = ARWorldTrackingConfiguration()
         if ARWorldTrackingConfiguration.supportsFrameSemantics(.personSegmentationWithDepth) {
             configuration.frameSemantics.insert(.personSegmentationWithDepth)
