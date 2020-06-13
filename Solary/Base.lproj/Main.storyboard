@@ -87,6 +87,9 @@
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <inset key="imageEdgeInsets" minX="25" minY="10" maxX="25" maxY="10"/>
                                                         <state key="normal" image="galaxy"/>
+                                                        <connections>
+                                                            <action selector="galaxyButtonTapped:" destination="BV1-FR-VrT" eventType="touchUpInside" id="pcT-h9-85E"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -117,6 +120,9 @@
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" image="play" catalog="system"/>
+                                                        <connections>
+                                                            <action selector="actionButtonTapped:" destination="BV1-FR-VrT" eventType="touchUpInside" id="eJe-RN-Kdf"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -157,6 +163,8 @@
                         <viewLayoutGuide key="safeArea" id="fQZ-KI-GVf"/>
                     </view>
                     <connections>
+                        <outlet property="actionButton" destination="pLU-uu-0BW" id="4iP-7r-PJv"/>
+                        <outlet property="galaxyButton" destination="Vtm-d2-7Z9" id="ekj-Ev-5tb"/>
                         <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
                         <outletCollection property="blurViews" destination="5pO-ps-A1R" collectionClass="NSMutableArray" id="TWh-FS-ARC"/>
                         <outletCollection property="blurViews" destination="1gY-28-A7J" collectionClass="NSMutableArray" id="UZU-H4-KQb"/>

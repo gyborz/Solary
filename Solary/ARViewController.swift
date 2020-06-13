@@ -12,11 +12,13 @@ import ARKit
 
 class ARViewController: UIViewController, ARSCNViewDelegate {
     
-    var node: Node!
+    var nodeData: Node!
     private var center: CGPoint!
     private var positions = [SCNVector3]()
-    private let pointer = SCNScene(named: "art.scnassets/pointer.scn")!.rootNode
-    private var rootNode: SCNNode {
+    private var pointer: SCNNode!
+    private var galaxy: SCNNode!
+    private var actions = [String:[String:SCNAction]]()
+    var rootNode: SCNNode {
         return sceneView.scene.rootNode
     }
     
@@ -32,6 +34,8 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet var blurViews: [UIView]!
+    @IBOutlet weak var galaxyButton: UIButton!
+    @IBOutlet weak var actionButton: UIButton!
     private let coachingOverlay = ARCoachingOverlayView()
     
     override func viewDidLoad() {
@@ -39,6 +43,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         sceneView.delegate = self
         center = view.center
         setupUI()
+        createGestureRecognizers()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,8 +76,15 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     
     private func setupARSession() {
         let configuration = ARWorldTrackingConfiguration()
+        if ARWorldTrackingConfiguration.supportsFrameSemantics(.personSegmentationWithDepth) {
+            configuration.frameSemantics.insert(.personSegmentationWithDepth)
+        }
         sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
+        pointer = SCNScene(named: "art.scnassets/pointer.scn")!.rootNode.childNode(withName: "pointer", recursively: true)
+        galaxy = SCNScene(named: "art.scnassets/galaxy.scn")!.rootNode.childNode(withName: "galaxy", recursively: true)
+        actions = [String:[String:SCNAction]]()
         rootNode.addChildNode(pointer)
+        currentSceneState = .pointer
     }
     
     private func setOverlay(automatically: Bool, forDetectionType goal: ARCoachingOverlayView.Goal) {
@@ -110,6 +122,23 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         let count = Float(positions.count)
         return SCNVector3Make(averageX / count, averageY / count, averageZ / count)
     }
+    
+    private func createGestureRecognizers() {
+        /// rotation gesture
+        let rotationGesture = UIRotationGestureRecognizer(target: self, action: #selector(didRotate(_:)))
+        rotationGesture.delegate = self
+        sceneView.addGestureRecognizer(rotationGesture)
+        
+        /// pinch gesture
+        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(didPinch(_:)))
+        pinchGesture.delegate = self
+        sceneView.addGestureRecognizer(pinchGesture)
+        
+        /// pan gesture
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(didPan(_:)))
+        panGesture.delegate = self
+        sceneView.addGestureRecognizer(panGesture)
+    }
 
     // MARK: - ARSCNViewDelegate
     
@@ -120,7 +149,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     
     func sessionWasInterrupted(_ session: ARSession) {
         // Inform the user that the session has been interrupted, for example, by presenting an overlay
-        
+        hideControls(true)
     }
     
     func sessionInterruptionEnded(_ session: ARSession) {
@@ -133,30 +162,124 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-        let hitTest = sceneView.hitTest(center, types: .featurePoint)
-        let result = hitTest.last
-        guard let transform = result?.worldTransform else { return }
-        let thirdColumn = transform.columns.3
-        let position = SCNVector3Make(thirdColumn.x, thirdColumn.y, thirdColumn.z)
-        positions.append(position)
-        let lastTenPositions = positions.suffix(10)
-        pointer.position = getAveragePosition(from: lastTenPositions)
+        if currentSceneState == .pointer {
+            let hitTest = sceneView.hitTest(center, types: .featurePoint)
+            let result = hitTest.last
+            guard let transform = result?.worldTransform else { return }
+            let thirdColumn = transform.columns.3
+            let position = SCNVector3Make(thirdColumn.x, thirdColumn.y, thirdColumn.z)
+            positions.append(position)
+            let lastTenPositions = positions.suffix(10)
+            pointer.position = getAveragePosition(from: lastTenPositions)
+        }
     }
     
     func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
         switch camera.trackingState {
         case .notAvailable, .limited:
-            // MARK: - TODO
-            print("not normal")
-            if currentSceneState == .pointer {
-                pointer.removeFromParentNode()
-            }
+            rootNode.childNodes.forEach { $0.isHidden = true }
         case .normal:
-            // MARK: - TODO
-            print("normal")
-            if currentSceneState == .pointer {
-                rootNode.addChildNode(pointer)
+            rootNode.childNodes.forEach { $0.isHidden = false }
+        }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if currentSceneState == .pointer {
+            guard let camera = sceneView.session.currentFrame?.camera else { return }
+            let node = getNode(with: nodeData)
+            node.position = pointer.position
+            node.position.y = camera.transform.columns.3.y
+            currentSceneState = .planet
+            rootNode.addChildNode(node)
+            pointer.removeFromParentNode()
+        }
+    }
+    
+    private func getNode(with nodeData: Node) -> SCNNode {
+        switch nodeData.sceneType {
+        case .planet:
+            // MARK: - TODO proper error handling
+            guard let node = SCNScene(named: "art.scnassets/planet.scn")!.rootNode.childNode(withName: nodeData.fileName, recursively: true) else { fatalError("Missing node") }
+            node.enumerateHierarchy { (nodeMember, _) in
+                guard let nodeName = nodeMember.name else { return }
+                if !nodeMember.actionKeys.isEmpty {
+                    var actionsForThisNode = [String:SCNAction]()
+                    nodeMember.actionKeys.forEach {
+                        actionsForThisNode[$0] = nodeMember.action(forKey: $0)
+                    }
+                    actions[nodeName] = actionsForThisNode
+                    nodeMember.removeAllActions()
+                }
             }
+            return node
+        case .solarSystem:
+            guard let node = SCNScene(named: "art.scnassets/solarSystem.scn")!.rootNode.childNode(withName: nodeData.fileName, recursively: true) else { fatalError("Missing node") }
+            node.enumerateHierarchy { (nodeMember, _) in
+                guard let nodeName = nodeMember.name else { return }
+                if !nodeMember.actionKeys.isEmpty {
+                    var actionsForThisNode = [String:SCNAction]()
+                    nodeMember.actionKeys.forEach {
+                        actionsForThisNode[$0] = nodeMember.action(forKey: $0)
+                    }
+                    actions[nodeName] = actionsForThisNode
+                    nodeMember.removeAllActions()
+                }
+            }
+            return node
+        }
+    }
+    
+    private func hideControls(_ hide: Bool) {
+        if hide {
+            for blurView in blurViews {
+                if blurView.tag != 1 {
+                    UIView.animate(withDuration: 0.3) {
+                        blurView.alpha = 0
+                    }
+                }
+            }
+        } else {
+            for blurView in blurViews {
+                UIView.animate(withDuration: 0.3) {
+                    blurView.alpha = 1.0
+                }
+            }
+        }
+    }
+    
+    @IBAction func galaxyButtonTapped(_ sender: UIButton) {
+        if rootNode.childNodes.contains(galaxy) {
+            galaxy.removeFromParentNode()
+            galaxyButton.setImage(UIImage(named: "galaxy"), for: .normal)
+        } else {
+            rootNode.addChildNode(galaxy)
+            galaxyButton.setImage(UIImage(named: "galaxy.fill"), for: .normal)
+        }
+    }
+    
+    @IBAction func actionButtonTapped(_ sender: UIButton) {
+        guard let currentNode = rootNode.childNode(withName: nodeData.fileName, recursively: true) else { return }
+        var anyNodeHasActions = false
+        currentNode.enumerateHierarchy { (nodeMember, _) in
+            if !nodeMember.actionKeys.isEmpty {
+                anyNodeHasActions = true
+            }
+        }
+        if !anyNodeHasActions {
+            currentNode.enumerateHierarchy { (nodeMember, _) in
+                guard let nodeName = nodeMember.name else { return }
+                if let actionsForThisNode = actions[nodeName] {
+                    for (key, action) in actionsForThisNode {
+                        nodeMember.runAction(action, forKey: key)
+                    }
+                }
+            }
+            actionButton.setImage(UIImage(systemName: "pause"), for: .normal)
+        } else {
+            currentNode.enumerateHierarchy { (nodeMember, _) in
+                nodeMember.removeAllActions()
+            }
+            actionButton.setImage(UIImage(systemName: "play"), for: .normal)
         }
     }
     
@@ -169,14 +292,21 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
 extension ARViewController: ARCoachingOverlayViewDelegate {
     
     func coachingOverlayViewWillActivate(_ coachingOverlayView: ARCoachingOverlayView) {
-        blurViews.forEach { $0.isHidden = $0.tag != 1 ? true : false }
+        hideControls(true)
     }
     
     func coachingOverlayViewDidDeactivate(_ coachingOverlayView: ARCoachingOverlayView) {
-        blurViews.forEach { $0.isHidden = false }
+        hideControls(false)
     }
     
     func coachingOverlayViewDidRequestSessionReset(_ coachingOverlayView: ARCoachingOverlayView) {
+        rootNode.childNodes.forEach {
+            if $0.name == nodeData.fileName || $0.name == galaxy.name || $0.name == pointer.name {
+                $0.removeFromParentNode()
+            }
+        }
+        galaxyButton.setImage(UIImage(named: "galaxy"), for: .normal)
+        actionButton.setImage(UIImage(systemName: "play"), for: .normal)
         setupARSession()
     }
     
