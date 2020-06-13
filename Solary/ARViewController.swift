@@ -76,6 +76,9 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     
     private func setupARSession() {
         let configuration = ARWorldTrackingConfiguration()
+        if ARWorldTrackingConfiguration.supportsFrameSemantics(.personSegmentationWithDepth) {
+            configuration.frameSemantics.insert(.personSegmentationWithDepth)
+        }
         sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
         pointer = SCNScene(named: "art.scnassets/pointer.scn")!.rootNode.childNode(withName: "pointer", recursively: true)
         galaxy = SCNScene(named: "art.scnassets/galaxy.scn")!.rootNode.childNode(withName: "galaxy", recursively: true)
@@ -255,15 +258,15 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     }
     
     @IBAction func actionButtonTapped(_ sender: UIButton) {
-        guard let visibleNode = rootNode.childNode(withName: nodeData.fileName, recursively: true) else { return }
+        guard let currentNode = rootNode.childNode(withName: nodeData.fileName, recursively: true) else { return }
         var anyNodeHasActions = false
-        visibleNode.enumerateHierarchy { (nodeMember, _) in
+        currentNode.enumerateHierarchy { (nodeMember, _) in
             if !nodeMember.actionKeys.isEmpty {
                 anyNodeHasActions = true
             }
         }
         if !anyNodeHasActions {
-            visibleNode.enumerateHierarchy { (nodeMember, _) in
+            currentNode.enumerateHierarchy { (nodeMember, _) in
                 guard let nodeName = nodeMember.name else { return }
                 if let actionsForThisNode = actions[nodeName] {
                     for (key, action) in actionsForThisNode {
@@ -273,7 +276,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
             }
             actionButton.setImage(UIImage(systemName: "pause"), for: .normal)
         } else {
-            visibleNode.enumerateHierarchy { (nodeMember, _) in
+            currentNode.enumerateHierarchy { (nodeMember, _) in
                 nodeMember.removeAllActions()
             }
             actionButton.setImage(UIImage(systemName: "play"), for: .normal)
