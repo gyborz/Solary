@@ -10,9 +10,13 @@ import UIKit
 
 class NodeTableViewCell: UITableViewCell {
     
+    // MARK: - IBOutlets
+    
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var nodeLabel: UILabel!
     @IBOutlet weak var nodeImageView: UIImageView!
+    
+    // MARK: - View Handling
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,6 +40,8 @@ class NodeTableViewCell: UITableViewCell {
             containerView.alpha = 1
         }
     }
+    
+    // MARK: - Gradient Method
     
     private func setGradientBackground() {
         let colorTop = #colorLiteral(red: 0.04841813788, green: 0.04889752538, blue: 0.04889752538, alpha: 1).cgColor

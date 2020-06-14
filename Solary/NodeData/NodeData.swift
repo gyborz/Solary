@@ -10,14 +10,19 @@ import UIKit
 
 struct NodeData {
     
+    /// which scene contains the node
     var sceneType: SceneType
-    var fileName: String
-    var name: String
     
-    init(sceneType: SceneType, fileName: String, name: String) {
+    /// node's name
+    var nodeName: String
+    
+    /// title
+    var title: String
+    
+    init(sceneType: SceneType, nodeName: String, title: String) {
         self.sceneType = sceneType
-        self.fileName = fileName
-        self.name = name
+        self.nodeName = nodeName
+        self.title = title
     }
     
 }

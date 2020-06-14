@@ -13,10 +13,14 @@ extension ARViewController: UIGestureRecognizerDelegate {
     
     @objc
     func didRotate(_ gesture: UIRotationGestureRecognizer) {
-        guard let currentNode = rootNode.childNode(withName: nodeData.fileName, recursively: true) else { return }
+        guard let currentNode = rootNode.childNode(withName: nodeData.nodeName, recursively: true) else { return }
         guard gesture.state == .changed else { return }
         
-        currentNode.eulerAngles.y -= Float(gesture.rotation)
+        if currentNode.name == "uranus" {
+            currentNode.eulerAngles.z -= Float(gesture.rotation)
+        } else {
+            currentNode.eulerAngles.y -= Float(gesture.rotation)
+        }
         
         gesture.rotation = 0
     }
@@ -24,11 +28,10 @@ extension ARViewController: UIGestureRecognizerDelegate {
     @objc
     func didPinch(_ gesture: UIPinchGestureRecognizer)
     {
-        guard let currentNode = rootNode.childNode(withName: nodeData.fileName, recursively: true) else { return }
+        guard let currentNode = rootNode.childNode(withName: nodeData.nodeName, recursively: true) else { return }
         guard gesture.state == .changed else { return }
         
         let touch = gesture.location(in: sceneView)
-        
         let hitTestResults = self.sceneView.hitTest(touch, options: nil)
         
         if let hitTest = hitTestResults.first, hitTest.node.name == currentNode.name {
@@ -45,7 +48,7 @@ extension ARViewController: UIGestureRecognizerDelegate {
     @objc
     func didPan(_ gesture: UIPanGestureRecognizer)
     {
-        guard let currentNode = rootNode.childNode(withName: nodeData.fileName, recursively: true) else { return }
+        guard let currentNode = rootNode.childNode(withName: nodeData.nodeName, recursively: true) else { return }
         guard gesture.state == .changed else { return }
         
         let touch = gesture.location(in: sceneView)

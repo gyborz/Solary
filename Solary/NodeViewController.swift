@@ -10,30 +10,40 @@ import UIKit
 
 class NodeViewController: UIViewController {
     
+    // MARK: - Properties
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    
+    /// hard coded data for the tableView and ARViewController
     private let nodeData: [NodeData] = [
-        NodeData(sceneType: .solarSystem, fileName: "solarSystem", name: "Solar system"),
-        NodeData(sceneType: .planet, fileName: "sun", name: "Sun"),
-        NodeData(sceneType: .planet, fileName: "mercury", name: "Mercury"),
-        NodeData(sceneType: .planet, fileName: "venus", name: "Venus"),
-        NodeData(sceneType: .planet, fileName: "earthDay", name: "Earth (day)"),
-        NodeData(sceneType: .planet, fileName: "earthNight", name: "Earth (night)"),
-        NodeData(sceneType: .planet, fileName: "moon", name: "Moon"),
-        NodeData(sceneType: .planet, fileName: "mars", name: "Mars"),
-        NodeData(sceneType: .planet, fileName: "jupiter", name: "Jupiter"),
-        NodeData(sceneType: .planet, fileName: "saturn", name: "Saturn"),
-        NodeData(sceneType: .planet, fileName: "uranus", name: "Uranus"),
-        NodeData(sceneType: .planet, fileName: "neptune", name: "Neptune")
+        NodeData(sceneType: .solarSystem, nodeName: "solarSystem", title: "Solar system"),
+        NodeData(sceneType: .planet, nodeName: "sun", title: "Sun"),
+        NodeData(sceneType: .planet, nodeName: "mercury", title: "Mercury"),
+        NodeData(sceneType: .planet, nodeName: "venus", title: "Venus"),
+        NodeData(sceneType: .planet, nodeName: "earthDay", title: "Earth (day)"),
+        NodeData(sceneType: .planet, nodeName: "earthNight", title: "Earth (night)"),
+        NodeData(sceneType: .planet, nodeName: "moon", title: "Moon"),
+        NodeData(sceneType: .planet, nodeName: "mars", title: "Mars"),
+        NodeData(sceneType: .planet, nodeName: "jupiter", title: "Jupiter"),
+        NodeData(sceneType: .planet, nodeName: "saturn", title: "Saturn"),
+        NodeData(sceneType: .planet, nodeName: "uranus", title: "Uranus"),
+        NodeData(sceneType: .planet, nodeName: "neptune", title: "Neptune")
     ]
     
+    // MARK: - IBOutlets
+    
     @IBOutlet weak var sceneTableView: UITableView!
+    
+    // MARK: - View Controller Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
     }
+    
+    // MARK: - UI Setup
     
     private func configure() {
         view.backgroundColor = .black
@@ -48,6 +58,8 @@ class NodeViewController: UIViewController {
 
 }
 
+// MARK: - UITableViewDataSource, UITableViewDelegate
+
 extension NodeViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -57,8 +69,8 @@ extension NodeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = sceneTableView.dequeueReusableCell(withIdentifier: "NodeCell", for: indexPath) as! NodeTableViewCell
         
-        cell.nodeLabel.text = nodeData[indexPath.row].name
-        cell.nodeImageView.image = UIImage(named: nodeData[indexPath.row].fileName)
+        cell.nodeLabel.text = nodeData[indexPath.row].title
+        cell.nodeImageView.image = UIImage(named: nodeData[indexPath.row].nodeName)
         
         return cell
     }
