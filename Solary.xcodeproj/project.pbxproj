@@ -13,9 +13,11 @@
 		E7233368248D1C09006963D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7233366248D1C09006963D2 /* Main.storyboard */; };
 		E723336A248D1C11006963D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7233369248D1C11006963D2 /* Assets.xcassets */; };
 		E723336D248D1C11006963D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E723336B248D1C11006963D2 /* LaunchScreen.storyboard */; };
+		E736038B24964AC100A6A158 /* ARViewController+ARSCNViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E736038A24964AC100A6A158 /* ARViewController+ARSCNViewDelegate.swift */; };
+		E736038D24964D5700A6A158 /* ARViewController+CoachingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = E736038C24964D5700A6A158 /* ARViewController+CoachingOverlay.swift */; };
 		E7608ECE24950EC900196FF3 /* ARViewController+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7608ECD24950EC900196FF3 /* ARViewController+Gestures.swift */; };
 		E7EE49A9248D21B400AD2A7F /* NodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EE49A8248D21B400AD2A7F /* NodeViewController.swift */; };
-		E7EE49AB248D29B800AD2A7F /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EE49AA248D29B800AD2A7F /* Node.swift */; };
+		E7EE49AB248D29B800AD2A7F /* NodeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EE49AA248D29B800AD2A7F /* NodeData.swift */; };
 		E7EE49AD248D2A9F00AD2A7F /* SceneType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EE49AC248D2A9F00AD2A7F /* SceneType.swift */; };
 		E7EE49B0248D2DD600AD2A7F /* NodeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EE49AE248D2DD600AD2A7F /* NodeTableViewCell.swift */; };
 		E7EE49B1248D2DD600AD2A7F /* NodeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7EE49AF248D2DD600AD2A7F /* NodeTableViewCell.xib */; };
@@ -30,9 +32,11 @@
 		E7233369248D1C11006963D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E723336C248D1C11006963D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E723336E248D1C11006963D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E736038A24964AC100A6A158 /* ARViewController+ARSCNViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARViewController+ARSCNViewDelegate.swift"; sourceTree = "<group>"; };
+		E736038C24964D5700A6A158 /* ARViewController+CoachingOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARViewController+CoachingOverlay.swift"; sourceTree = "<group>"; };
 		E7608ECD24950EC900196FF3 /* ARViewController+Gestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARViewController+Gestures.swift"; sourceTree = "<group>"; };
 		E7EE49A8248D21B400AD2A7F /* NodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeViewController.swift; sourceTree = "<group>"; };
-		E7EE49AA248D29B800AD2A7F /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
+		E7EE49AA248D29B800AD2A7F /* NodeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeData.swift; sourceTree = "<group>"; };
 		E7EE49AC248D2A9F00AD2A7F /* SceneType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneType.swift; sourceTree = "<group>"; };
 		E7EE49AE248D2DD600AD2A7F /* NodeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeTableViewCell.swift; sourceTree = "<group>"; };
 		E7EE49AF248D2DD600AD2A7F /* NodeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NodeTableViewCell.xib; sourceTree = "<group>"; };
@@ -69,19 +73,29 @@
 			isa = PBXGroup;
 			children = (
 				E7233360248D1C09006963D2 /* AppDelegate.swift */,
-				E7233362248D1C09006963D2 /* art.scnassets */,
 				E7233364248D1C09006963D2 /* ARViewController.swift */,
 				E7608ECD24950EC900196FF3 /* ARViewController+Gestures.swift */,
+				E736038A24964AC100A6A158 /* ARViewController+ARSCNViewDelegate.swift */,
+				E736038C24964D5700A6A158 /* ARViewController+CoachingOverlay.swift */,
 				E7EE49A8248D21B400AD2A7F /* NodeViewController.swift */,
-				E7233366248D1C09006963D2 /* Main.storyboard */,
+				E7233362248D1C09006963D2 /* art.scnassets */,
 				E7233369248D1C11006963D2 /* Assets.xcassets */,
+				E7233366248D1C09006963D2 /* Main.storyboard */,
 				E723336B248D1C11006963D2 /* LaunchScreen.storyboard */,
 				E723336E248D1C11006963D2 /* Info.plist */,
-				E7EE49AA248D29B800AD2A7F /* Node.swift */,
-				E7EE49AC248D2A9F00AD2A7F /* SceneType.swift */,
+				E73603892496471F00A6A158 /* NodeData */,
 				E7EE49B2248D2DF400AD2A7F /* Cells */,
 			);
 			path = Solary;
+			sourceTree = "<group>";
+		};
+		E73603892496471F00A6A158 /* NodeData */ = {
+			isa = PBXGroup;
+			children = (
+				E7EE49AA248D29B800AD2A7F /* NodeData.swift */,
+				E7EE49AC248D2A9F00AD2A7F /* SceneType.swift */,
+			);
+			path = NodeData;
 			sourceTree = "<group>";
 		};
 		E7EE49B2248D2DF400AD2A7F /* Cells */ = {
@@ -167,12 +181,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7EE49B0248D2DD600AD2A7F /* NodeTableViewCell.swift in Sources */,
-				E7EE49AB248D29B800AD2A7F /* Node.swift in Sources */,
+				E7EE49AB248D29B800AD2A7F /* NodeData.swift in Sources */,
 				E7EE49A9248D21B400AD2A7F /* NodeViewController.swift in Sources */,
 				E7233365248D1C09006963D2 /* ARViewController.swift in Sources */,
 				E7608ECE24950EC900196FF3 /* ARViewController+Gestures.swift in Sources */,
+				E736038B24964AC100A6A158 /* ARViewController+ARSCNViewDelegate.swift in Sources */,
 				E7EE49AD248D2A9F00AD2A7F /* SceneType.swift in Sources */,
 				E7233361248D1C09006963D2 /* AppDelegate.swift in Sources */,
+				E736038D24964D5700A6A158 /* ARViewController+CoachingOverlay.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

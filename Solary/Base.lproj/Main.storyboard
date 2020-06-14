@@ -49,7 +49,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                             </arscnView>
                             <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1gY-28-A7J">
-                                <rect key="frame" x="367" y="59" width="35" height="35"/>
+                                <rect key="frame" x="364" y="59" width="35" height="35"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r0d-5E-AsI">
                                         <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
@@ -85,7 +85,7 @@
                                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vtm-d2-7Z9">
                                                         <rect key="frame" x="0.0" y="0.0" width="90" height="50"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <inset key="imageEdgeInsets" minX="25" minY="10" maxX="25" maxY="10"/>
+                                                        <inset key="imageEdgeInsets" minX="29" minY="12" maxX="29" maxY="12"/>
                                                         <state key="normal" image="galaxy"/>
                                                         <connections>
                                                             <action selector="galaxyButtonTapped:" destination="BV1-FR-VrT" eventType="touchUpInside" id="pcT-h9-85E"/>
@@ -154,7 +154,7 @@
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="trailing" secondItem="1Nl-Ec-ahs" secondAttribute="trailing" id="GJ9-lB-zDz"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="GsS-dJ-CKf"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="bottom" secondItem="fQZ-KI-GVf" secondAttribute="bottom" id="VpT-BR-CcM"/>
-                            <constraint firstAttribute="trailing" secondItem="1gY-28-A7J" secondAttribute="trailing" constant="12" id="WkR-iy-3bA"/>
+                            <constraint firstAttribute="trailing" secondItem="1gY-28-A7J" secondAttribute="trailing" constant="15" id="WkR-iy-3bA"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="XyZ-9z-H8e"/>
                             <constraint firstItem="1gY-28-A7J" firstAttribute="top" secondItem="fQZ-KI-GVf" secondAttribute="top" constant="15" id="g5y-pu-9pd"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="top" secondItem="U0K-SW-4ec" secondAttribute="top" id="rJc-2c-zQA"/>

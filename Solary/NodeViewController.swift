@@ -10,30 +10,40 @@ import UIKit
 
 class NodeViewController: UIViewController {
     
+    // MARK: - Properties
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    private let data: [Node] = [
-        Node(sceneType: .solarSystem, fileName: "solarSystem", name: "Solar system", rotation: nil),
-        Node(sceneType: .planet, fileName: "sun", name: "Sun", rotation: nil),
-        Node(sceneType: .planet, fileName: "mercury", name: "Mercury", rotation: nil),
-        Node(sceneType: .planet, fileName: "venus", name: "Venus", rotation: nil),
-        Node(sceneType: .planet, fileName: "earthDay", name: "Earth (day)", rotation: nil),
-        Node(sceneType: .planet, fileName: "earthNight", name: "Earth (night)", rotation: nil),
-        Node(sceneType: .planet, fileName: "moon", name: "Moon", rotation: nil),
-        Node(sceneType: .planet, fileName: "mars", name: "Mars", rotation: nil),
-        Node(sceneType: .planet, fileName: "jupiter", name: "Jupiter", rotation: nil),
-        Node(sceneType: .planet, fileName: "saturn", name: "Saturn", rotation: nil),
-        Node(sceneType: .planet, fileName: "uranus", name: "Uranus", rotation: nil),
-        Node(sceneType: .planet, fileName: "neptune", name: "Neptune", rotation: nil)
+    
+    /// hard coded data for the tableView and ARViewController
+    private let nodeData: [NodeData] = [
+        NodeData(sceneType: .solarSystem, nodeName: "solarSystem", title: "Solar system"),
+        NodeData(sceneType: .planet, nodeName: "sun", title: "Sun"),
+        NodeData(sceneType: .planet, nodeName: "mercury", title: "Mercury"),
+        NodeData(sceneType: .planet, nodeName: "venus", title: "Venus"),
+        NodeData(sceneType: .planet, nodeName: "earthDay", title: "Earth (day)"),
+        NodeData(sceneType: .planet, nodeName: "earthNight", title: "Earth (night)"),
+        NodeData(sceneType: .planet, nodeName: "moon", title: "Moon"),
+        NodeData(sceneType: .planet, nodeName: "mars", title: "Mars"),
+        NodeData(sceneType: .planet, nodeName: "jupiter", title: "Jupiter"),
+        NodeData(sceneType: .planet, nodeName: "saturn", title: "Saturn"),
+        NodeData(sceneType: .planet, nodeName: "uranus", title: "Uranus"),
+        NodeData(sceneType: .planet, nodeName: "neptune", title: "Neptune")
     ]
     
+    // MARK: - IBOutlets
+    
     @IBOutlet weak var sceneTableView: UITableView!
+    
+    // MARK: - View Controller Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
     }
+    
+    // MARK: - UI Setup
     
     private func configure() {
         view.backgroundColor = .black
@@ -48,27 +58,31 @@ class NodeViewController: UIViewController {
 
 }
 
+// MARK: - UITableViewDataSource, UITableViewDelegate
+
 extension NodeViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        data.count
+        nodeData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = sceneTableView.dequeueReusableCell(withIdentifier: "NodeCell", for: indexPath) as! NodeTableViewCell
         
-        cell.nodeLabel.text = data[indexPath.row].name
-        cell.nodeImageView.image = UIImage(named: data[indexPath.row].fileName)
+        cell.nodeLabel.text = nodeData[indexPath.row].title
+        cell.nodeImageView.image = UIImage(named: nodeData[indexPath.row].nodeName)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let chosenNode = data[indexPath.row]
+        let chosenNode = nodeData[indexPath.row]
         let destVC = self.storyboard?.instantiateViewController(withIdentifier: "ARViewController") as! ARViewController
         destVC.nodeData = chosenNode
         destVC.modalPresentationStyle = .fullScreen
-        present(destVC, animated: true)
+        present(destVC, animated: true) { [weak self] in
+            self?.sceneTableView.deselectRow(at: indexPath, animated: false)
+        }
     }
     
 }
