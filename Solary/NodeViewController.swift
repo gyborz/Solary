@@ -68,9 +68,9 @@ extension NodeViewController: UITableViewDataSource, UITableViewDelegate {
         let destVC = self.storyboard?.instantiateViewController(withIdentifier: "ARViewController") as! ARViewController
         destVC.nodeData = chosenNode
         destVC.modalPresentationStyle = .fullScreen
-        present(destVC, animated: true, completion: {
-            tableView.deselectRow(at: indexPath, animated: true)
-        })
+        present(destVC, animated: true) { [weak self] in
+            self?.sceneTableView.deselectRow(at: indexPath, animated: false)
+        }
     }
     
 }
