@@ -155,16 +155,69 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JSb-ph-hBp">
+                                <rect key="frame" x="25" y="96" width="15" height="15"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="15" id="3XR-ij-isS"/>
+                                    <constraint firstAttribute="height" constant="15" id="zGn-Sh-dU1"/>
+                                </constraints>
+                            </view>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IC7-cF-Ro3">
+                                <rect key="frame" x="19" y="102" width="250" height="120"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bNG-s5-HGQ">
+                                        <rect key="frame" x="8" y="8" width="234" height="104"/>
+                                        <string key="text">Tip: the planet can be scaled by pinching, rotated by moving two fingers in the opposite direction and moved up and down by swiping</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="50F-zF-QMx"/>
+                                    <constraint firstItem="bNG-s5-HGQ" firstAttribute="leading" secondItem="IC7-cF-Ro3" secondAttribute="leading" constant="8" id="6eH-E5-JFI"/>
+                                    <constraint firstAttribute="trailing" secondItem="bNG-s5-HGQ" secondAttribute="trailing" constant="8" id="FJK-uP-ZlX"/>
+                                    <constraint firstItem="bNG-s5-HGQ" firstAttribute="top" secondItem="IC7-cF-Ro3" secondAttribute="top" constant="8" id="RF3-f9-bte"/>
+                                    <constraint firstAttribute="width" constant="250" id="j8B-FL-kuv"/>
+                                    <constraint firstAttribute="bottom" secondItem="bNG-s5-HGQ" secondAttribute="bottom" constant="8" id="juI-Nh-vIc"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gYM-QN-WMY" customClass="TouchView" customModule="Solary" customModuleProvider="target">
+                                <rect key="frame" x="15" y="63" width="35" height="35"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="info.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="yrW-b7-B6I">
+                                        <rect key="frame" x="4" y="4.5" width="27" height="26"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="yrW-b7-B6I" firstAttribute="leading" secondItem="gYM-QN-WMY" secondAttribute="leading" constant="4" id="CN9-fG-Wqf"/>
+                                    <constraint firstItem="yrW-b7-B6I" firstAttribute="top" secondItem="gYM-QN-WMY" secondAttribute="top" constant="4" id="L5q-bP-1y3"/>
+                                    <constraint firstAttribute="trailing" secondItem="yrW-b7-B6I" secondAttribute="trailing" constant="4" id="McA-1R-fqR"/>
+                                    <constraint firstAttribute="bottom" secondItem="yrW-b7-B6I" secondAttribute="bottom" constant="4" id="VBX-zt-QN4"/>
+                                    <constraint firstAttribute="height" constant="35" id="o69-Cn-D0x"/>
+                                    <constraint firstAttribute="width" constant="35" id="sna-Kw-vR5"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fQZ-KI-GVf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="1Nl-Ec-ahs" secondAttribute="bottom" constant="10" id="2o7-9F-ntu"/>
                             <constraint firstItem="GRf-e1-WWB" firstAttribute="centerY" secondItem="U0K-SW-4ec" secondAttribute="centerY" constant="-100" id="9ZR-b0-tWD"/>
+                            <constraint firstItem="JSb-ph-hBp" firstAttribute="top" secondItem="gYM-QN-WMY" secondAttribute="bottom" constant="-2" id="Auh-Ye-xQe"/>
+                            <constraint firstItem="gYM-QN-WMY" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="15" id="B6M-a2-LCP"/>
                             <constraint firstAttribute="bottom" secondItem="BrB-h1-WRS" secondAttribute="bottom" id="BIk-8h-rpk"/>
+                            <constraint firstItem="IC7-cF-Ro3" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="19" id="FsJ-3j-Sue"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="trailing" secondItem="1Nl-Ec-ahs" secondAttribute="trailing" id="GJ9-lB-zDz"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="GsS-dJ-CKf"/>
+                            <constraint firstItem="JSb-ph-hBp" firstAttribute="centerX" secondItem="gYM-QN-WMY" secondAttribute="centerX" id="IXP-CI-yLG"/>
+                            <constraint firstItem="IC7-cF-Ro3" firstAttribute="top" secondItem="gYM-QN-WMY" secondAttribute="bottom" constant="4" id="KCP-e1-5s4"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="trailing" secondItem="GRf-e1-WWB" secondAttribute="trailing" constant="40" id="Mb0-61-ayd"/>
+                            <constraint firstItem="gYM-QN-WMY" firstAttribute="top" secondItem="fQZ-KI-GVf" secondAttribute="top" constant="15" id="OZl-wx-bAP"/>
                             <constraint firstAttribute="trailing" secondItem="1gY-28-A7J" secondAttribute="trailing" constant="15" id="WkR-iy-3bA"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="XyZ-9z-H8e"/>
                             <constraint firstItem="GRf-e1-WWB" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="40" id="e6o-O4-QK7"/>
@@ -178,7 +231,11 @@
                         <outlet property="actionButton" destination="pLU-uu-0BW" id="4iP-7r-PJv"/>
                         <outlet property="galaxyButton" destination="Vtm-d2-7Z9" id="ekj-Ev-5tb"/>
                         <outlet property="guideLabel" destination="GRf-e1-WWB" id="hZY-Pd-M2i"/>
+                        <outlet property="infoImageView" destination="yrW-b7-B6I" id="EsY-T6-Dtd"/>
+                        <outlet property="infoView" destination="gYM-QN-WMY" id="aTk-LW-ZO6"/>
                         <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
+                        <outlet property="tipPointerView" destination="JSb-ph-hBp" id="qj3-aE-NW9"/>
+                        <outlet property="tipView" destination="IC7-cF-Ro3" id="8yq-5b-mik"/>
                         <outletCollection property="blurViews" destination="5pO-ps-A1R" collectionClass="NSMutableArray" id="TWh-FS-ARC"/>
                         <outletCollection property="blurViews" destination="1gY-28-A7J" collectionClass="NSMutableArray" id="UZU-H4-KQb"/>
                         <outletCollection property="blurViews" destination="NHj-H3-dQW" collectionClass="NSMutableArray" id="sHV-q7-BfL"/>
@@ -191,6 +248,7 @@
     </scenes>
     <resources>
         <image name="galaxy" width="50" height="50"/>
+        <image name="info.circle" catalog="system" width="128" height="123"/>
         <image name="play" catalog="system" width="117" height="128"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">

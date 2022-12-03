@@ -49,6 +49,14 @@ class ARViewController: UIViewController {
         return true
     }
 
+    /// showing / hiding tip
+    private var isTipVisible: Bool = false {
+        didSet {
+            infoImageView.image = UIImage(systemName: isTipVisible ? "info.circle.fill" : "info.circle")
+            animateTipView(isVisible: isTipVisible)
+        }
+    }
+
     // MARK: - IBOutlets
 
     @IBOutlet var sceneView: ARSCNView!
@@ -56,6 +64,10 @@ class ARViewController: UIViewController {
     @IBOutlet var galaxyButton: UIButton!
     @IBOutlet var actionButton: UIButton!
     @IBOutlet var guideLabel: UILabel!
+    @IBOutlet var infoView: TouchView!
+    @IBOutlet var infoImageView: UIImageView!
+    @IBOutlet var tipView: UIView!
+    @IBOutlet var tipPointerView: UIView!
 
     // MARK: - UI Elements
 
@@ -121,6 +133,10 @@ class ARViewController: UIViewController {
                 blurView.layer.cornerRadius = 10
             }
         }
+
+        tipPointerView.transform = CGAffineTransform(rotationAngle: .pi / 4)
+        tipView.layer.cornerRadius = 8
+        tipView.layer.masksToBounds = true
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -128,16 +144,24 @@ class ARViewController: UIViewController {
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if currentSceneState == .pointer {
-            guard let camera = sceneView.session.currentFrame?.camera else { return }
-            let node = getNode(with: nodeData)
-            node.position = pointer.position
-            node.position.y = camera.transform.columns.3.y
-            currentSceneState = .planet
-            rootNode.addChildNode(node)
-            pointer.removeFromParentNode()
+        if let location = touches.first?.location(in: self.view) {
+            if infoView.frame.contains(location) {
+                isTipVisible.toggle()
+            } else if tipView.frame.contains(location), isTipVisible {
+                isTipVisible = false
+            } else {
+                if currentSceneState == .pointer {
+                    guard let camera = sceneView.session.currentFrame?.camera else { return }
+                    let node = getNode(with: nodeData)
+                    node.position = pointer.position
+                    node.position.y = camera.transform.columns.3.y
+                    currentSceneState = .planet
+                    rootNode.addChildNode(node)
+                    pointer.removeFromParentNode()
 
-            animateGuideLabel(isVisible: false)
+                    animateGuideLabel(isVisible: false)
+                }
+            }
         }
     }
 
@@ -232,6 +256,8 @@ class ARViewController: UIViewController {
             rootNode.addChildNode(galaxy)
             galaxyButton.setImage(UIImage(named: "galaxy.fill"), for: .normal)
         }
+
+        isTipVisible = false
     }
 
     @IBAction func actionButtonTapped(_ sender: UIButton) {
@@ -263,10 +289,16 @@ class ARViewController: UIViewController {
             }
             actionButton.setImage(UIImage(systemName: "play"), for: .normal)
         }
+
+        isTipVisible = false
     }
 
     @IBAction func exitButtonTapped(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
+    }
+
+    @objc func didTap(_ gesture: UITapGestureRecognizer) {
+        isTipVisible.toggle()
     }
 
     // MARK: - Error handling
@@ -288,6 +320,25 @@ class ARViewController: UIViewController {
     func animateGuideLabel(isVisible: Bool) {
         UIView.animate(withDuration: 0.2) {
             self.guideLabel.alpha = isVisible ? 1 : 0
+        }
+    }
+
+    // MARK: - Tip
+
+    func animateTipView(isVisible: Bool) {
+        UIView.animate(withDuration: 0.2) {
+            if isVisible {
+                self.tipView.alpha = 1
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    self.tipPointerView.alpha = 1
+                }
+            } else {
+                self.tipPointerView.alpha = 0
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    self.tipView.alpha = 0
+                }
+            }
+            
         }
     }
 }
