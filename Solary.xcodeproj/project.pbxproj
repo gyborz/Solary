@@ -16,6 +16,7 @@
 		E736038B24964AC100A6A158 /* ARViewController+ARSCNViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E736038A24964AC100A6A158 /* ARViewController+ARSCNViewDelegate.swift */; };
 		E736038D24964D5700A6A158 /* ARViewController+CoachingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = E736038C24964D5700A6A158 /* ARViewController+CoachingOverlay.swift */; };
 		E7608ECE24950EC900196FF3 /* ARViewController+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7608ECD24950EC900196FF3 /* ARViewController+Gestures.swift */; };
+		E77DBBFF293B64F40085B5ED /* TouchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77DBBFE293B64F40085B5ED /* TouchView.swift */; };
 		E7EE49A9248D21B400AD2A7F /* NodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EE49A8248D21B400AD2A7F /* NodeViewController.swift */; };
 		E7EE49AB248D29B800AD2A7F /* NodeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EE49AA248D29B800AD2A7F /* NodeData.swift */; };
 		E7EE49AD248D2A9F00AD2A7F /* SceneType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EE49AC248D2A9F00AD2A7F /* SceneType.swift */; };
@@ -35,6 +36,7 @@
 		E736038A24964AC100A6A158 /* ARViewController+ARSCNViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARViewController+ARSCNViewDelegate.swift"; sourceTree = "<group>"; };
 		E736038C24964D5700A6A158 /* ARViewController+CoachingOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARViewController+CoachingOverlay.swift"; sourceTree = "<group>"; };
 		E7608ECD24950EC900196FF3 /* ARViewController+Gestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARViewController+Gestures.swift"; sourceTree = "<group>"; };
+		E77DBBFE293B64F40085B5ED /* TouchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchView.swift; sourceTree = "<group>"; };
 		E7EE49A8248D21B400AD2A7F /* NodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeViewController.swift; sourceTree = "<group>"; };
 		E7EE49AA248D29B800AD2A7F /* NodeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeData.swift; sourceTree = "<group>"; };
 		E7EE49AC248D2A9F00AD2A7F /* SceneType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneType.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				E7233366248D1C09006963D2 /* Main.storyboard */,
 				E723336B248D1C11006963D2 /* LaunchScreen.storyboard */,
 				E723336E248D1C11006963D2 /* Info.plist */,
+				E77DBBFD293B64E60085B5ED /* Shared */,
 				E73603892496471F00A6A158 /* NodeData */,
 				E7EE49B2248D2DF400AD2A7F /* Cells */,
 			);
@@ -96,6 +99,14 @@
 				E7EE49AC248D2A9F00AD2A7F /* SceneType.swift */,
 			);
 			path = NodeData;
+			sourceTree = "<group>";
+		};
+		E77DBBFD293B64E60085B5ED /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				E77DBBFE293B64F40085B5ED /* TouchView.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		E7EE49B2248D2DF400AD2A7F /* Cells */ = {
@@ -186,6 +197,7 @@
 				E7233365248D1C09006963D2 /* ARViewController.swift in Sources */,
 				E7608ECE24950EC900196FF3 /* ARViewController+Gestures.swift in Sources */,
 				E736038B24964AC100A6A158 /* ARViewController+ARSCNViewDelegate.swift in Sources */,
+				E77DBBFF293B64F40085B5ED /* TouchView.swift in Sources */,
 				E7EE49AD248D2A9F00AD2A7F /* SceneType.swift in Sources */,
 				E7233361248D1C09006963D2 /* AppDelegate.swift in Sources */,
 				E736038D24964D5700A6A158 /* ARViewController+CoachingOverlay.swift in Sources */,

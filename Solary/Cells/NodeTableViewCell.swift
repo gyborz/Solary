@@ -12,7 +12,7 @@ class NodeTableViewCell: UITableViewCell {
     
     // MARK: - IBOutlets
     
-    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var containerView: TouchView!
     @IBOutlet weak var nodeLabel: UILabel!
     @IBOutlet weak var nodeImageView: UIImageView!
     
