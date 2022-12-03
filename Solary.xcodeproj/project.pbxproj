@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,13 @@
 		E736038D24964D5700A6A158 /* ARViewController+CoachingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = E736038C24964D5700A6A158 /* ARViewController+CoachingOverlay.swift */; };
 		E7608ECE24950EC900196FF3 /* ARViewController+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7608ECD24950EC900196FF3 /* ARViewController+Gestures.swift */; };
 		E77DBBFF293B64F40085B5ED /* TouchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77DBBFE293B64F40085B5ED /* TouchView.swift */; };
+		E77DBC04293B7A530085B5ED /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = E77DBC03293B7A530085B5ED /* SnapKit */; };
+		E77DBC06293B7A6B0085B5ED /* TipButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77DBC05293B7A6B0085B5ED /* TipButton.swift */; };
+		E77DBC08293B7A750085B5ED /* TipJarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77DBC07293B7A750085B5ED /* TipJarView.swift */; };
+		E77DBC0D293B7B020085B5ED /* CustomIntensityVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77DBC0C293B7B020085B5ED /* CustomIntensityVisualEffectView.swift */; };
+		E77DBC10293B7DEF0085B5ED /* SwiftTipJar in Frameworks */ = {isa = PBXBuildFile; productRef = E77DBC0F293B7DEF0085B5ED /* SwiftTipJar */; };
+		E77DBC13293B8CF40085B5ED /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E77DBC12293B8CF40085B5ED /* StoreKit.framework */; };
+		E77DBC15293B8DAB0085B5ED /* StoreKitConfig.storekit in Resources */ = {isa = PBXBuildFile; fileRef = E77DBC14293B8DAB0085B5ED /* StoreKitConfig.storekit */; };
 		E7EE49A9248D21B400AD2A7F /* NodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EE49A8248D21B400AD2A7F /* NodeViewController.swift */; };
 		E7EE49AB248D29B800AD2A7F /* NodeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EE49AA248D29B800AD2A7F /* NodeData.swift */; };
 		E7EE49AD248D2A9F00AD2A7F /* SceneType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EE49AC248D2A9F00AD2A7F /* SceneType.swift */; };
@@ -37,6 +44,11 @@
 		E736038C24964D5700A6A158 /* ARViewController+CoachingOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARViewController+CoachingOverlay.swift"; sourceTree = "<group>"; };
 		E7608ECD24950EC900196FF3 /* ARViewController+Gestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARViewController+Gestures.swift"; sourceTree = "<group>"; };
 		E77DBBFE293B64F40085B5ED /* TouchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchView.swift; sourceTree = "<group>"; };
+		E77DBC05293B7A6B0085B5ED /* TipButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipButton.swift; sourceTree = "<group>"; };
+		E77DBC07293B7A750085B5ED /* TipJarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipJarView.swift; sourceTree = "<group>"; };
+		E77DBC0C293B7B020085B5ED /* CustomIntensityVisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomIntensityVisualEffectView.swift; sourceTree = "<group>"; };
+		E77DBC12293B8CF40085B5ED /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		E77DBC14293B8DAB0085B5ED /* StoreKitConfig.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = StoreKitConfig.storekit; sourceTree = "<group>"; };
 		E7EE49A8248D21B400AD2A7F /* NodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeViewController.swift; sourceTree = "<group>"; };
 		E7EE49AA248D29B800AD2A7F /* NodeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeData.swift; sourceTree = "<group>"; };
 		E7EE49AC248D2A9F00AD2A7F /* SceneType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneType.swift; sourceTree = "<group>"; };
@@ -49,6 +61,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E77DBC13293B8CF40085B5ED /* StoreKit.framework in Frameworks */,
+				E77DBC10293B7DEF0085B5ED /* SwiftTipJar in Frameworks */,
+				E77DBC04293B7A530085B5ED /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +75,7 @@
 			children = (
 				E723335F248D1C09006963D2 /* Solary */,
 				E723335E248D1C09006963D2 /* Products */,
+				E77DBC11293B8CF40085B5ED /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -75,19 +91,17 @@
 			isa = PBXGroup;
 			children = (
 				E7233360248D1C09006963D2 /* AppDelegate.swift */,
-				E7233364248D1C09006963D2 /* ARViewController.swift */,
-				E7608ECD24950EC900196FF3 /* ARViewController+Gestures.swift */,
-				E736038A24964AC100A6A158 /* ARViewController+ARSCNViewDelegate.swift */,
-				E736038C24964D5700A6A158 /* ARViewController+CoachingOverlay.swift */,
-				E7EE49A8248D21B400AD2A7F /* NodeViewController.swift */,
+				E77DBC09293B7A8E0085B5ED /* ARViewController */,
+				E77DBC0A293B7AA10085B5ED /* NodeViewController */,
+				E77DBBFD293B64E60085B5ED /* Shared */,
+				E73603892496471F00A6A158 /* NodeData */,
+				E77DBC0B293B7ABF0085B5ED /* Tip */,
 				E7233362248D1C09006963D2 /* art.scnassets */,
 				E7233369248D1C11006963D2 /* Assets.xcassets */,
 				E7233366248D1C09006963D2 /* Main.storyboard */,
 				E723336B248D1C11006963D2 /* LaunchScreen.storyboard */,
 				E723336E248D1C11006963D2 /* Info.plist */,
-				E77DBBFD293B64E60085B5ED /* Shared */,
-				E73603892496471F00A6A158 /* NodeData */,
-				E7EE49B2248D2DF400AD2A7F /* Cells */,
+				E77DBC14293B8DAB0085B5ED /* StoreKitConfig.storekit */,
 			);
 			path = Solary;
 			sourceTree = "<group>";
@@ -105,8 +119,46 @@
 			isa = PBXGroup;
 			children = (
 				E77DBBFE293B64F40085B5ED /* TouchView.swift */,
+				E77DBC0C293B7B020085B5ED /* CustomIntensityVisualEffectView.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		E77DBC09293B7A8E0085B5ED /* ARViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E7233364248D1C09006963D2 /* ARViewController.swift */,
+				E7608ECD24950EC900196FF3 /* ARViewController+Gestures.swift */,
+				E736038A24964AC100A6A158 /* ARViewController+ARSCNViewDelegate.swift */,
+				E736038C24964D5700A6A158 /* ARViewController+CoachingOverlay.swift */,
+			);
+			path = ARViewController;
+			sourceTree = "<group>";
+		};
+		E77DBC0A293B7AA10085B5ED /* NodeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E7EE49A8248D21B400AD2A7F /* NodeViewController.swift */,
+				E7EE49B2248D2DF400AD2A7F /* Cells */,
+			);
+			path = NodeViewController;
+			sourceTree = "<group>";
+		};
+		E77DBC0B293B7ABF0085B5ED /* Tip */ = {
+			isa = PBXGroup;
+			children = (
+				E77DBC05293B7A6B0085B5ED /* TipButton.swift */,
+				E77DBC07293B7A750085B5ED /* TipJarView.swift */,
+			);
+			name = Tip;
+			sourceTree = "<group>";
+		};
+		E77DBC11293B8CF40085B5ED /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E77DBC12293B8CF40085B5ED /* StoreKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		E7EE49B2248D2DF400AD2A7F /* Cells */ = {
@@ -134,6 +186,10 @@
 			dependencies = (
 			);
 			name = Solary;
+			packageProductDependencies = (
+				E77DBC03293B7A530085B5ED /* SnapKit */,
+				E77DBC0F293B7DEF0085B5ED /* SwiftTipJar */,
+			);
 			productName = Solary;
 			productReference = E723335D248D1C09006963D2 /* Solary.app */;
 			productType = "com.apple.product-type.application";
@@ -162,6 +218,10 @@
 				Base,
 			);
 			mainGroup = E7233354248D1C09006963D2;
+			packageReferences = (
+				E77DBC02293B7A530085B5ED /* XCRemoteSwiftPackageReference "SnapKit" */,
+				E77DBC0E293B7DEF0085B5ED /* XCRemoteSwiftPackageReference "SwiftTipJar" */,
+			);
 			productRefGroup = E723335E248D1C09006963D2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -179,6 +239,7 @@
 				E7233363248D1C09006963D2 /* art.scnassets in Resources */,
 				E723336D248D1C11006963D2 /* LaunchScreen.storyboard in Resources */,
 				E7EE49B1248D2DD600AD2A7F /* NodeTableViewCell.xib in Resources */,
+				E77DBC15293B8DAB0085B5ED /* StoreKitConfig.storekit in Resources */,
 				E723336A248D1C11006963D2 /* Assets.xcassets in Resources */,
 				E7233368248D1C09006963D2 /* Main.storyboard in Resources */,
 			);
@@ -191,12 +252,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E77DBC08293B7A750085B5ED /* TipJarView.swift in Sources */,
 				E7EE49B0248D2DD600AD2A7F /* NodeTableViewCell.swift in Sources */,
 				E7EE49AB248D29B800AD2A7F /* NodeData.swift in Sources */,
 				E7EE49A9248D21B400AD2A7F /* NodeViewController.swift in Sources */,
 				E7233365248D1C09006963D2 /* ARViewController.swift in Sources */,
+				E77DBC0D293B7B020085B5ED /* CustomIntensityVisualEffectView.swift in Sources */,
 				E7608ECE24950EC900196FF3 /* ARViewController+Gestures.swift in Sources */,
 				E736038B24964AC100A6A158 /* ARViewController+ARSCNViewDelegate.swift in Sources */,
+				E77DBC06293B7A6B0085B5ED /* TipButton.swift in Sources */,
 				E77DBBFF293B64F40085B5ED /* TouchView.swift in Sources */,
 				E7EE49AD248D2A9F00AD2A7F /* SceneType.swift in Sources */,
 				E7233361248D1C09006963D2 /* AppDelegate.swift in Sources */,
@@ -277,7 +341,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -332,7 +396,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -350,7 +414,7 @@
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 62RRN86UA9;
 				INFOPLIST_FILE = Solary/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -370,7 +434,7 @@
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 62RRN86UA9;
 				INFOPLIST_FILE = Solary/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -404,6 +468,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E77DBC02293B7A530085B5ED /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		E77DBC0E293B7DEF0085B5ED /* XCRemoteSwiftPackageReference "SwiftTipJar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dkasaj/SwiftTipJar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E77DBC03293B7A530085B5ED /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E77DBC02293B7A530085B5ED /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		E77DBC0F293B7DEF0085B5ED /* SwiftTipJar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E77DBC0E293B7DEF0085B5ED /* XCRemoteSwiftPackageReference "SwiftTipJar" */;
+			productName = SwiftTipJar;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E7233355248D1C09006963D2 /* Project object */;
 }

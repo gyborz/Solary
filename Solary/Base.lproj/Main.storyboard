@@ -18,26 +18,48 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FMj-tv-OZH">
-                                <rect key="frame" x="0.0" y="48" width="414" height="848"/>
+                                <rect key="frame" x="0.0" y="108" width="414" height="788"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Rp-0Z-Qve">
+                                <rect key="frame" x="0.0" y="48" width="414" height="60"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Solary" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gmY-Dm-MCu">
+                                        <rect key="frame" x="171" y="15.5" width="72" height="29"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="gmY-Dm-MCu" firstAttribute="centerY" secondItem="3Rp-0Z-Qve" secondAttribute="centerY" id="4fy-YX-sYw"/>
+                                    <constraint firstAttribute="height" constant="60" id="bao-U9-b2y"/>
+                                    <constraint firstItem="gmY-Dm-MCu" firstAttribute="centerX" secondItem="3Rp-0Z-Qve" secondAttribute="centerX" id="f6a-Yc-kSM"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ziY-b0-JeF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="3Rp-0Z-Qve" firstAttribute="leading" secondItem="ziY-b0-JeF" secondAttribute="leading" id="4uU-XM-nO6"/>
                             <constraint firstAttribute="bottom" secondItem="FMj-tv-OZH" secondAttribute="bottom" id="Ert-30-ObN"/>
-                            <constraint firstItem="FMj-tv-OZH" firstAttribute="top" secondItem="ziY-b0-JeF" secondAttribute="top" id="dxP-IV-vgM"/>
+                            <constraint firstItem="3Rp-0Z-Qve" firstAttribute="trailing" secondItem="ziY-b0-JeF" secondAttribute="trailing" id="WRk-sH-9sX"/>
+                            <constraint firstItem="FMj-tv-OZH" firstAttribute="top" secondItem="3Rp-0Z-Qve" secondAttribute="bottom" id="XSl-Ah-1lv"/>
                             <constraint firstItem="FMj-tv-OZH" firstAttribute="leading" secondItem="ziY-b0-JeF" secondAttribute="leading" id="j0G-qp-8gz"/>
                             <constraint firstItem="ziY-b0-JeF" firstAttribute="trailing" secondItem="FMj-tv-OZH" secondAttribute="trailing" id="wWB-Vp-Ybj"/>
+                            <constraint firstItem="3Rp-0Z-Qve" firstAttribute="top" secondItem="ziY-b0-JeF" secondAttribute="top" id="yzr-bd-IdP"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="headerView" destination="3Rp-0Z-Qve" id="Hc4-vC-PHe"/>
                         <outlet property="sceneTableView" destination="FMj-tv-OZH" id="Crs-JN-o67"/>
+                        <outlet property="titleLabel" destination="gmY-Dm-MCu" id="HYo-PY-8hd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SYN-Av-lKn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-614" y="139"/>
+            <point key="canvasLocation" x="-614.49275362318849" y="138.61607142857142"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tXr-a1-R10">

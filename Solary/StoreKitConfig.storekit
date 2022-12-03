@@ -1,0 +1,63 @@
+{
+  "identifier" : "E43A7442",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "E45C1366",
+      "localizations" : [
+        {
+          "description" : "Tip",
+          "displayName" : "Tip",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.temporary.tip",
+      "referenceName" : "Tip",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "1.99",
+      "familyShareable" : false,
+      "internalID" : "872FADB9",
+      "localizations" : [
+        {
+          "description" : "Big tip",
+          "displayName" : "Big tip",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.temporary.bigtip",
+      "referenceName" : "Big tip",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "internalID" : "5805FE78",
+      "localizations" : [
+        {
+          "description" : "Giant tip",
+          "displayName" : "Giant tip",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.temporary.gianttip",
+      "referenceName" : "Giant tip",
+      "type" : "Consumable"
+    }
+  ],
+  "settings" : {
+
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 2,
+    "minor" : 0
+  }
+}
